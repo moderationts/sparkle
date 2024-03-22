@@ -31,7 +31,7 @@ git clone https://github.com/jxstdan/dans-utilities.git
 2. Navigate to the project directory
 
 ```bash
-cd dan.exe-remastered
+cd dans-utilities
 ```
 
 3. Install the project dependencies using npm
