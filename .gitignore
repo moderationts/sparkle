@@ -8,3 +8,4 @@ yarn-error.log
 tsconfig.tsbuildinfo
 package-lock.json
 config/1182751948705902685.yaml
+prisma/database.sqlite
