@@ -68,6 +68,7 @@ export default async function (message: Message<true>, args: string[], commandNa
       );
   }
 
+  message.delete().catch(() => {});
   const punish = await client.db.punishment.create({
     data: {
       id: genID(),
@@ -100,7 +101,6 @@ export default async function (message: Message<true>, args: string[], commandNa
       });
   }
 
-  message.delete().catch(() => {});
   if (!silentFlag) await client.punishments.createDM(punish, additionalInfo);
 
   switch (punishment) {
@@ -125,7 +125,22 @@ export default async function (message: Message<true>, args: string[], commandNa
 
   const tense = pastTensePunishmentTypes[lpunishment as keyof typeof pastTensePunishmentTypes];
 
+  const alts = await client.db.alt.findMany({
+    where: {
+      guildId: message.guildId,
+      mainId: target.id
+    }
+  });
+
+  const altNames = await Promise.all(
+    alts.map(async alt => {
+      const altUser = await client.users.fetch(alt.id);
+      return `${altUser.toString()}`;
+    })
+  );
+
   await message.channel.send({
+    content: alts.length > 0 ? `This user has the following alts registered: ${altNames.join(', ')}` : undefined,
     embeds: [
       {
         description: `${target.toString()} has been **${tense}** | \`${punish.id}\``,

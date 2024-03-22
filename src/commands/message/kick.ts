@@ -37,6 +37,7 @@ class KickCommand extends Command {
     if (!reason) throw 'You must provide a reason to kick.';
     if (reason.length > 3500) throw `The reason may only be a maximum of 3500 characters (${reason.length} provided.)`;
 
+    message.delete().catch(() => {});
     const punishment = await this.client.db.punishment.create({
       data: {
         id: genID(),
@@ -49,10 +50,25 @@ class KickCommand extends Command {
       }
     });
 
-    message.delete().catch(() => {});
     if (!silentFlag) await this.client.punishments.createDM(punishment);
     member.kick(reason);
+
+    const alts = await this.client.db.alt.findMany({
+      where: {
+        guildId: message.guildId,
+        mainId: member.id
+      }
+    });
+
+    const altNames = await Promise.all(
+      alts.map(async alt => {
+        const altUser = await this.client.users.fetch(alt.id);
+        return `${altUser.toString()}`;
+      })
+    );
+
     message.channel.send({
+      content: alts.length > 0 ? `This user has the following alts registered: ${altNames.join(', ')}` : undefined,
       embeds: [{ description: `${member.toString()} has been **kicked** | \`${punishment.id}\``, color: Colors.Yellow }]
     });
     this.client.punishments.createLog(punishment);

@@ -7,7 +7,7 @@ import { bin } from '../../lib/util/functions';
 @properties<'message'>({
   name: 'config',
   description: 'Configuration related commands.',
-  args: 'view',
+  args: 'config view',
   aliases: ['cfg'],
   userPermissions: PermissionFlagsBits.Administrator
 })

@@ -1,7 +1,6 @@
 import { Message, PermissionFlagsBits } from 'discord.js';
 import { confirmGuild, unresolvedGuilds } from './chatInputCommand';
 import { readConfig, throwError } from '../lib/util/functions';
-import { safeCommands } from '../lib/util/constants';
 import client from '../client';
 import customMessageCommand from './customMessageCommand';
 import commandLog from './commandLog';
@@ -64,7 +63,6 @@ export default async function (message: Message) {
       !config.commands.channels?.includes(message.channelId) &&
       !message.member!.permissions.has(PermissionFlagsBits.ManageMessages)
     ) {
-      if (config.commands.channels?.length! === 0) return message.delete().catch(() => {});
       return message
         .reply(
           `Whoops! You can only use commands in the following channel${
@@ -93,7 +91,7 @@ export default async function (message: Message) {
   try {
     await command.run(message, args, config);
     if (command.guildResolve) unresolvedGuilds.delete(`${message.guildId!} ${commandName}`);
-    if (!safeCommands.includes(command.name)) commandLog(message, command.name);
+    commandLog(message, command.name);
   } catch (e) {
     if (command.guildResolve) unresolvedGuilds.delete(`${message.guildId!} ${commandName}`);
 
