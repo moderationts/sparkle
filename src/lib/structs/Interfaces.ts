@@ -1,4 +1,4 @@
-import { PunishmentType } from '@prisma/client';
+import { PunishmentType } from '../util/constants';
 
 export interface PunishmentEdit {
   id: string;

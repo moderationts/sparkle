@@ -38,10 +38,12 @@ export default async function (interaction: AutocompleteInteraction<'cached'>) {
       const selectType = type === 'Manual' ? 'escalationsManual' : 'escalationsAutoMod';
       const selectTypeAsQuery = type === 'Manual' ? { escalationsManual: true } : { escalationsAutoMod: true };
 
-      const escalations = (await client.db.guild.findUnique({
-        where: { id: interaction.guildId },
-        select: selectTypeAsQuery
-      }))![selectType] as Escalation[];
+      const escalations = JSON.parse(
+        (await client.db.guild.findUnique({
+          where: { id: interaction.guildId },
+          select: selectTypeAsQuery
+        }))![selectType]
+      ) as Escalation[];
 
       const relevant = escalations.filter(e => e.amount === amount && e.within !== '0');
 

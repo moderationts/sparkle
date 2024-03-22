@@ -1,12 +1,5 @@
-import { PunishmentType } from '@prisma/client';
-import {
-  ChatInputCommandInteraction,
-  SlashCommandBuilder,
-  PermissionFlagsBits,
-  ApplicationCommandOptionType as OptionType,
-  EmbedBuilder,
-  PermissionsBitField
-} from 'discord.js';
+import { PunishmentType } from '../../lib/util/constants';
+import { ChatInputCommandInteraction, SlashCommandBuilder, PermissionFlagsBits } from 'discord.js';
 import ms from 'ms';
 import Command, { data } from '../../lib/structs/Command';
 import { d28, mainColor } from '../../lib/util/constants';

@@ -1,4 +1,4 @@
-import { PunishmentType } from '@prisma/client';
+import { PunishmentType } from '../../lib/util/constants';
 import { PermissionFlagsBits, Colors, Message, GuildMember } from 'discord.js';
 import Command, { properties } from '../../lib/structs/Command';
 import { adequateHierarchy, genID, getFlag, getMember, getUser, parseDuration } from '../../lib/util/functions';
@@ -58,6 +58,7 @@ class BanCommand extends Command {
     )
       expires = Number(config.punishments?.defaultBanDuration) + date;
 
+    message.delete().catch(() => {});
     const punishment = await this.client.db.punishment.create({
       data: {
         id: genID(),
@@ -95,12 +96,25 @@ class BanCommand extends Command {
         })
         .catch(() => {});
 
-    message.delete().catch(() => {});
-
     if (!silentFlag) await this.client.punishments.createDM(punishment);
     message.guild.members.ban(user.id, { reason });
 
+    const alts = await this.client.db.alt.findMany({
+      where: {
+        guildId: message.guildId,
+        mainId: user.id
+      }
+    });
+
+    const altNames = await Promise.all(
+      alts.map(async alt => {
+        const altUser = await this.client.users.fetch(alt.id);
+        return `${altUser.toString()}`;
+      })
+    );
+
     message.channel.send({
+      content: alts.length > 0 ? `This user has the following alts registered: ${altNames.join(', ')}` : undefined,
       embeds: [{ description: `${user.toString()} has been **banned** | \`${punishment.id}\``, color: Colors.Red }]
     });
     this.client.punishments.createLog(punishment);

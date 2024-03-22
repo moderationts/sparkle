@@ -1,6 +1,6 @@
 import { Guild, GuildMember, Message, PermissionFlagsBits } from 'discord.js';
 import { containsProhibitedWords, genID, quickMessage, readConfig } from '../lib/util/functions';
-import { PunishmentType } from '@prisma/client';
+import { PunishmentType } from '../lib/util/constants';
 import client from '../client';
 import { Escalation } from '../types';
 import ms from 'ms';
@@ -202,7 +202,7 @@ export async function autoModPunish(
     where: { id: guild.id }
   }))!;
 
-  const escalations = escalationsAutoMod as Escalation[];
+  const escalations = JSON.parse(escalationsAutoMod) as Escalation[];
 
   const date = Date.now();
   const expires = duration ? date + duration : null;

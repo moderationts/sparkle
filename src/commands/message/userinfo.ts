@@ -23,6 +23,20 @@ class UserinfoCommand extends Command {
     );
     const joinedStr = user instanceof GuildMember ? Math.floor(user.joinedTimestamp! / 1000) : null;
 
+    const alts = await this.client.db.alt.findMany({
+      where: {
+        guildId: message.guildId,
+        mainId: user.id
+      }
+    });
+
+    const altNames = await Promise.all(
+      alts.map(async alt => {
+        const altUser = await this.client.users.fetch(alt.id);
+        return `${altUser.toString()}`;
+      })
+    );
+
     const embed = new EmbedBuilder()
       .setAuthor({
         name: user instanceof GuildMember ? user.user.username : user.username,
@@ -33,7 +47,9 @@ class UserinfoCommand extends Command {
       .setDescription(
         `**User ID:** ${user.id}\n**Created:** <t:${createdStr}> (<t:${createdStr}:R>)${
           joinedStr ? `\n**Joined:** <t:${joinedStr}> (<t:${joinedStr}:R>)` : ''
-        }\n**Bot:** ${(user instanceof GuildMember ? user.user.bot : user.bot) ? 'Yes' : 'No'}`
+        }\n**Bot:** ${(user instanceof GuildMember ? user.user.bot : user.bot) ? 'Yes' : 'No'}\n${
+          alts.length > 0 ? `**Alts:** ${altNames.join(', ')}` : ''
+        }`
       );
 
     return message.channel.send({ embeds: [embed] });

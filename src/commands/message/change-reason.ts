@@ -1,7 +1,7 @@
 import { EmbedBuilder, Message, MessageCollector, PermissionFlagsBits } from 'discord.js';
 import Command, { properties } from '../../lib/structs/Command';
 import { getFlag, getMember } from '../../lib/util/functions';
-import { PreconditionType, mainColor, punishmentColors } from '../../lib/util/constants';
+import { PreconditionType, PunishmentType, punishmentColors } from '../../lib/util/constants';
 import { ConfigData, PunishmentEdit } from '../../lib/structs/Interfaces';
 
 @properties<'message'>({
@@ -70,7 +70,7 @@ class ChangeReason extends Command {
         const notifyDM = new EmbedBuilder()
           .setAuthor({ name: `${this.client.user!.username}`, iconURL: this.client.user!.displayAvatarURL() })
           .setTitle(`${punishment.type} Reason Changed`)
-          .setColor(punishmentColors[punishment.type])
+          .setColor(punishmentColors[punishment.type as PunishmentType])
           .addFields({
             name: 'New Reason',
             value: newReason

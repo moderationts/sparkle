@@ -85,3 +85,11 @@ export enum PreconditionType {
 
 export const safeCommands = ['ping', 'yeet', 'bean', 'help', 'userinfo', 'avatar', 'config'];
 
+export enum PunishmentType {
+  Warn = 'Warn',
+  Mute = 'Mute',
+  Kick = 'Kick',
+  Ban = 'Ban',
+  Unmute = 'Unmute',
+  Unban = 'Unban'
+}

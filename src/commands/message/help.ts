@@ -2,7 +2,7 @@ import { EmbedBuilder, Message, PermissionFlagsBits, PermissionsBitField } from 
 import Command, { properties } from '../../lib/structs/Command';
 import { mainColor } from '../../lib/util/constants';
 import ms from 'ms';
-import { PunishmentType } from '@prisma/client';
+import { PunishmentType } from '../../lib/util/constants';
 import { ConfigData } from '../../lib/structs/Interfaces';
 
 @properties<'message'>({
@@ -118,7 +118,7 @@ class HelpCommand extends Command {
     embed.addFields({
       name: 'Utility',
       value:
-        '`avatar`, `help`, `lock`, `unlock`, `manage-nick`, `moderate-nick`, `ping`, `purge`, `slowmode`, `userinfo`'
+        '`avatar`, `alt-manager`, `help`, `lock`, `unlock`, `manage-nick`, `moderate-nick`, `ping`, `purge`, `slowmode`, `userinfo`'
     });
     embed.addFields({
       name: 'Tomfoolery',

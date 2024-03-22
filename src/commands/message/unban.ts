@@ -1,4 +1,4 @@
-import { PunishmentType } from '@prisma/client';
+import { PunishmentType } from '../../lib/util/constants';
 import { PermissionFlagsBits, Message, Colors } from 'discord.js';
 import Command, { properties } from '../../lib/structs/Command';
 import { genID, getUser } from '../../lib/util/functions';
@@ -26,6 +26,7 @@ class UnbanCommand extends Command {
 
     const date = Date.now();
 
+    message.guild.members.unban(user.id, reason);
     const punishment = await this.client.db.punishment.create({
       data: {
         id: genID(),
@@ -38,8 +39,22 @@ class UnbanCommand extends Command {
       }
     });
 
-    message.guild.members.unban(user.id, reason);
+    const alts = await this.client.db.alt.findMany({
+      where: {
+        guildId: message.guildId,
+        mainId: user.id
+      }
+    });
+
+    const altNames = await Promise.all(
+      alts.map(async alt => {
+        const altUser = await this.client.users.fetch(alt.id);
+        return `${altUser.toString()}`;
+      })
+    );
+
     message.channel.send({
+      content: alts.length > 0 ? `This user has the following alts registered: ${altNames.join(', ')}` : undefined,
       embeds: [{ description: `${user.toString()} has been **unbanned** | \`${punishment.id}\``, color: Colors.Green }]
     });
     this.client.punishments.createLog(punishment);

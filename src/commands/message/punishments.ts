@@ -2,7 +2,7 @@ import { PermissionFlagsBits, EmbedBuilder, type EmbedField, Message } from 'dis
 import Command, { properties } from '../../lib/structs/Command';
 import { infractionsPerPage, mainColor } from '../../lib/util/constants';
 import { getFlag, getUser } from '../../lib/util/functions';
-import { PunishmentType } from '@prisma/client';
+import { PunishmentType } from '../../lib/util/constants';
 
 @properties<'message'>({
   name: 'punishments',

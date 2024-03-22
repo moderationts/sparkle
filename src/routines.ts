@@ -1,12 +1,11 @@
 import { EmbedBuilder } from '@discordjs/builders';
 import { Colors, PermissionFlagsBits } from 'discord.js';
-import { Punishment, PunishmentType } from '@prisma/client';
+import { PunishmentType } from './lib/util/constants';
 import client from './client';
-import { genID, getMember, sleep } from './lib/util/functions';
-import { pastTensePunishmentTypes, punishmentColors } from './lib/util/constants';
+import { genID, getMember } from './lib/util/functions';
+import { pastTensePunishmentTypes } from './lib/util/constants';
 
 const MS_1_MINUTE = 60000;
-const MS_24_HOURS = 86400000;
 
 // for infractions
 setInterval(async () => {

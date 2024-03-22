@@ -1,4 +1,5 @@
-import { Punishment, PunishmentType } from '@prisma/client';
+import { Punishment } from '@prisma/client';
+import { PunishmentType } from '../util/constants';
 import { Colors, EmbedBuilder } from 'discord.js';
 import { punishmentColors, pastTensePunishmentTypes, mainColor } from '../util/constants';
 import client from '../../client';
@@ -10,7 +11,7 @@ export default class PunishmentManager {
     const config = await readConfig(punishment.guildId);
 
     const dm = new EmbedBuilder()
-      .setColor(punishmentColors[punishment.type])
+      .setColor(punishmentColors[punishment.type as PunishmentType])
       .setAuthor({ name: `${client.user!.username}`, iconURL: client.user!.displayAvatarURL() })
       .setTitle(
         `You've been ${
@@ -67,7 +68,7 @@ export default class PunishmentManager {
     const moderator = await getUser(punishment.moderatorId);
     const embed = new EmbedBuilder()
       .setAuthor({ name: `${moderator?.username} (${moderator?.id})`, iconURL: moderator?.displayAvatarURL() })
-      .setColor(punishmentColors[punishment.type])
+      .setColor(punishmentColors[punishment.type as PunishmentType])
       .setDescription(
         `**${
           punishment.type === PunishmentType.Ban || punishment.type === PunishmentType.Unban ? 'User' : 'Member'

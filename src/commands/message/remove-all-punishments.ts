@@ -2,7 +2,7 @@ import { PermissionFlagsBits, type Message, MessageCollector } from 'discord.js'
 import Command, { properties } from '../../lib/structs/Command';
 import { getFlag, getUser } from '../../lib/util/functions';
 import { ConfigData } from '../../lib/structs/Interfaces';
-import { PreconditionType } from '../../lib/util/constants';
+import { PreconditionType, PunishmentType } from '../../lib/util/constants';
 
 @properties<'message'>({
   name: 'remove-all-punishments',
@@ -23,12 +23,14 @@ class RemoveAllPunishmentsCommand extends Command {
     if (!message.member!.roles.cache.some(role => config.punishments?.managers?.includes(role.id)))
       throw `You must be a punishment manager to remove all ${automodFlag ? 'automod ' : ''}punishments from a user.`;
 
-    if (args.length === 0) throw `You must provide a user to remove all ${automodFlag ? 'automod ' : ''}punishments from.`;
+    if (args.length === 0)
+      throw `You must provide a user to remove all ${automodFlag ? 'automod ' : ''}punishments from.`;
     const user = await getUser(args[0]);
     if (!user) throw 'Invalid user.';
 
     const reason = args.slice(1).join(' ');
-    if (!reason) throw `You must provide a reason to remove all ${automodFlag ? 'automod ' : ''}punishments from a user.`;
+    if (!reason)
+      throw `You must provide a reason to remove all ${automodFlag ? 'automod ' : ''}punishments from a user.`;
 
     const count = await this.client.db.punishment.findMany({
       where: {
@@ -74,7 +76,7 @@ class RemoveAllPunishmentsCommand extends Command {
             guildId: message.guildId,
             userId: user.id,
             moderatorId: message.author.id,
-            type: 'Warn'
+            type: PunishmentType.Warn
           },
           'bulkdelete',
           count.map(punishment => punishment.id)

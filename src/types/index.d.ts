@@ -1,18 +1,13 @@
-import { InfractionType } from '@prisma/client';
 import { PreconditionType } from '../lib/util/constants';
-
-export type AutoModSpamTrigger = {
-  amount: number;
-  within: number;
-};
+import { PunishmentType } from '../lib/util/constants';
 
 export type EscalationType = 'Manual' | 'AutoMod';
 
 export type Escalation = {
   amount: number;
-  within: `${number}`;
-  punishment: InfractionType;
-  duration: `${number}`;
+  within: string;
+  punishment: PunishmentType;
+  duration: string;
 };
 
 type MessageCommandProperties = {

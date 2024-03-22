@@ -1,8 +1,8 @@
 import { type ChatInputCommandInteraction, SlashCommandBuilder, PermissionFlagsBits } from 'discord.js';
 import Command, { data } from '../../lib/structs/Command';
-import { PunishmentType } from '@prisma/client';
 import ms from 'ms';
 import { EscalationType, Escalation } from '../../types';
+import { PunishmentType } from '../../lib/util/constants';
 
 @data(
   new SlashCommandBuilder()
@@ -97,7 +97,9 @@ class EscalationsCommand extends Command {
       }
     }))!;
 
-    const escalations = (type === 'Manual' ? guild.escalationsManual : guild.escalationsAutoMod) as Escalation[];
+    const escalations = JSON.parse(
+      type === 'Manual' ? guild.escalationsManual : guild.escalationsAutoMod
+    ) as Escalation[];
 
     switch (subCmd) {
       case 'add': {
@@ -117,23 +119,20 @@ class EscalationsCommand extends Command {
         if (escalations.some(e => e.amount === amount && +e.within === within))
           throw `There is already an escalation for this amount${within ? ' for this duration' : ''}.`;
 
-        type === 'Manual'
-          ? await this.client.db.guild.update({
-              where: { id: interaction.guildId },
-              data: {
-                escalationsManual: {
-                  push: { amount, within: within.toString(), duration: duration?.toString() ?? '0', punishment }
-                }
-              }
-            })
-          : await this.client.db.guild.update({
-              where: { id: interaction.guildId },
-              data: {
-                escalationsAutoMod: {
-                  push: { amount, within: within.toString(), duration: duration?.toString() ?? '0', punishment }
-                }
-              }
-            });
+        escalations.push({
+          amount: amount,
+          within: within.toString(),
+          duration: duration?.toString() ?? '0',
+          punishment
+        });
+
+        await this.client.db.guild.update({
+          where: { id: interaction.guildId },
+          data:
+            type === 'Manual'
+              ? { escalationsManual: JSON.stringify(escalations) }
+              : { escalationsAutoMod: JSON.stringify(escalations) }
+        });
 
         return interaction.reply(
           `Escalation added: ${punishment.toLowerCase()} a member${
@@ -153,15 +152,13 @@ class EscalationsCommand extends Command {
 
         escalations.splice(escalations.indexOf(escalation), 1);
 
-        type === 'Manual'
-          ? await this.client.db.guild.update({
-              where: { id: interaction.guildId },
-              data: { escalationsManual: escalations }
-            })
-          : await this.client.db.guild.update({
-              where: { id: interaction.guildId },
-              data: { escalationsAutoMod: escalations }
-            });
+        await this.client.db.guild.update({
+          where: { id: interaction.guildId },
+          data:
+            type === 'Manual'
+              ? { escalationsManual: JSON.stringify(escalations) }
+              : { escalationsAutoMod: JSON.stringify(escalations) }
+        });
 
         return interaction.reply(
           `Escalation removed: ${escalation.punishment.toLowerCase()} a member${

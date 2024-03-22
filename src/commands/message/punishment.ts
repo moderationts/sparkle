@@ -1,6 +1,6 @@
 import { EmbedBuilder, Message, PermissionFlagsBits } from 'discord.js';
 import Command, { properties } from '../../lib/structs/Command';
-import { PunishmentType } from '@prisma/client';
+import { PunishmentType } from '../../lib/util/constants';
 import ms from 'ms';
 import { punishmentColors } from '../../lib/util/constants';
 import { getUser } from '../../lib/util/functions';
@@ -34,7 +34,7 @@ class PunishmentCommand extends Command {
         name: `${moderator!.username} (${moderator!.id})`,
         iconURL: moderator!.displayAvatarURL()
       })
-      .setColor(punishmentColors[punishment.type])
+      .setColor(punishmentColors[punishment.type as PunishmentType])
       .setDescription(
         `**${
           punishment.type === PunishmentType.Ban || punishment.type === PunishmentType.Unban ? 'User' : 'Member'

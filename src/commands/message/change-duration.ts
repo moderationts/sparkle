@@ -1,9 +1,9 @@
 import { EmbedBuilder, Message, MessageCollector, PermissionFlagsBits } from 'discord.js';
 import Command, { properties } from '../../lib/structs/Command';
 import ms from 'ms';
-import { PunishmentType } from '@prisma/client';
+import { PunishmentType } from '../../lib/util/constants';
 import { adequateHierarchy, getFlag, getMember, parseDuration } from '../../lib/util/functions';
-import { PreconditionType, d28, infractionsPerPage, mainColor, punishmentColors } from '../../lib/util/constants';
+import { PreconditionType, d28, punishmentColors } from '../../lib/util/constants';
 import { ConfigData, PunishmentEdit } from '../../lib/structs/Interfaces';
 
 @properties<'message'>({
@@ -132,7 +132,7 @@ class DurationCommand extends Command {
         const notifyDM = new EmbedBuilder()
           .setAuthor({ name: `${this.client.user!.username}`, iconURL: this.client.user!.displayAvatarURL() })
           .setTitle(`${punishment.type} Duration Changed`)
-          .setColor(punishmentColors[punishment.type])
+          .setColor(punishmentColors[punishment.type as PunishmentType])
           .addFields({
             name: 'New Expiration',
             value: `${expires ? `<t:${expiresStr}> (<t:${expiresStr}:R>)` : 'Never'}`

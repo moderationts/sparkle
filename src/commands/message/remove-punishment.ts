@@ -1,7 +1,7 @@
 import { PermissionFlagsBits, EmbedBuilder, Colors, Message, MessageCollector } from 'discord.js';
 import Command, { properties } from '../../lib/structs/Command';
 import { genID, getFlag, getMember, throwError } from '../../lib/util/functions';
-import { PunishmentType } from '@prisma/client';
+import { PunishmentType } from '../../lib/util/constants';
 import { ConfigData, PunishmentEdit } from '../../lib/structs/Interfaces';
 
 @properties<'message'>({

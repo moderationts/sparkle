@@ -1,6 +1,6 @@
 import { GuildMember } from 'discord.js';
 import Listener from '../lib/structs/Listener';
-import { PunishmentType } from '@prisma/client';
+import { PunishmentType } from '../lib/util/constants';
 
 class GuildMemberUpdateListener extends Listener {
   constructor() {
