@@ -26,6 +26,7 @@ model Guild {
   tasks       Task[]
   locks       Lock[]
   shortcuts   Shortcut[]
+  Alt         Alt[]
 }
 
 model Punishment {
@@ -75,4 +76,12 @@ model Shortcut {
   guild          Guild          @relation(fields: [guildId], references: [id], onDelete: Cascade)
 
   @@unique([guildId, name])
+}
+
+model Alt {
+  id      String @id
+  mainId  String
+  guildId String
+
+  Guild Guild @relation(fields: [guildId], references: [id], onDelete: Cascade)
 }
