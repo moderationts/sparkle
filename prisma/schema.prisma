@@ -1,0 +1,78 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum PunishmentType {
+  Warn
+  Mute
+  Kick
+  Ban
+  Unmute
+  Unban
+}
+
+model Guild {
+  id String @id
+
+  escalationsAutoMod Json[]
+  escalationsManual  Json[]
+
+  punishments Punishment[]
+  tasks       Task[]
+  locks       Lock[]
+  shortcuts   Shortcut[]
+}
+
+model Punishment {
+  id          String         @id
+  guildId     String
+  userId      String
+  moderatorId String         @default("1181678361630756864")
+  type        PunishmentType @default(Warn)
+  date        BigInt
+  expires     BigInt?
+  reason      String         @default("Unspecified reason.")
+  automod     Boolean        @default(false)
+
+  guild Guild @relation(fields: [guildId], references: [id], onDelete: Cascade)
+}
+
+model Task {
+  id      Int            @id @default(autoincrement()) @map("_id")
+  userId  String
+  guildId String
+  type    PunishmentType
+  expires BigInt
+
+  guild Guild @relation(fields: [guildId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, guildId, type])
+}
+
+model Lock {
+  channelId String @id
+  guildId   String
+  allow     BigInt
+
+  guild Guild @relation(fields: [guildId], references: [id], onDelete: Cascade)
+}
+
+model Shortcut {
+  guildId        String
+  name           String
+  description    String
+  punishment     PunishmentType
+  reason         String
+  duration       BigInt?
+  deleteTime     Int?
+  permission     BigInt         @default(1099511627776)
+  additionalInfo String?
+  guild          Guild          @relation(fields: [guildId], references: [id], onDelete: Cascade)
+
+  @@unique([guildId, name])
+}
