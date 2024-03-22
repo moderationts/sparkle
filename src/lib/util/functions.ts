@@ -1,10 +1,8 @@
 import {
   type Guild,
   type GuildMember,
-  ApplicationCommandPermissionType,
   Collection,
   ApplicationCommandPermissions,
-  PermissionFlagsBits,
   Message,
   Colors,
   SnowflakeUtil

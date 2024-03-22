@@ -14,6 +14,7 @@ export const secondaryColor = 0x9b9b97;
 export const commonChars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789';
 export const domainReg = /(?:[A-z0-9](?:[A-z0-9-]{0,61}[A-z0-9])?\.)+[A-z0-9][A-z0-9-]{0,61}[A-z0-9]/;
 export const urlReg = /http(s):\/\/(?:[A-z0-9](?:[A-z0-9-]{0,61}[A-z0-9])?\.)+[A-z0-9][A-z0-9-]{0,61}[A-z0-9]/;
+
 export const pastTensePunishmentTypes = {
   ban: 'banned',
   kick: 'kicked',
@@ -84,4 +85,3 @@ export enum PreconditionType {
 }
 
 export const safeCommands = ['ping', 'yeet', 'bean', 'help', 'userinfo', 'avatar', 'config'];
-
