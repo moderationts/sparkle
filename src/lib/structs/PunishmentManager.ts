@@ -1,6 +1,6 @@
 import { Punishment } from '@prisma/client';
 import { PunishmentType } from '../util/constants';
-import { Colors, EmbedBuilder } from 'discord.js';
+import { Colors, EmbedBuilder, GuildTextBasedChannel } from 'discord.js';
 import { punishmentColors, pastTensePunishmentTypes, mainColor } from '../util/constants';
 import client from '../../client';
 import { bin, formatDuration, getMember, getUser, readConfig } from '../util/functions';
@@ -113,7 +113,11 @@ export default class PunishmentManager {
         name: `${moderator!.username} (${moderator!.id})`,
         iconURL: moderator!.displayAvatarURL()
       })
-      .setColor(editType === 'expiration' || editType === 'reason' ? punishmentColors[punishment.type] : Colors.Red)
+      .setColor(
+        editType === 'expiration' || editType === 'reason'
+          ? punishmentColors[punishment.type as PunishmentType]
+          : Colors.Red
+      )
       .setDescription(
         `**${
           punishment.type === PunishmentType.Ban || punishment.type === PunishmentType.Unban ? 'User' : 'Member'
@@ -155,5 +159,34 @@ export default class PunishmentManager {
     if (editType !== 'bulkdelete') await channel.send({ embeds: [embed] });
     else await channel.send({ embeds: [embed2] });
     return;
+  }
+  async createMessage(punishment: Punishment, channel: GuildTextBasedChannel) {
+    const tense: string =
+      pastTensePunishmentTypes[punishment.type.toLowerCase() as keyof typeof pastTensePunishmentTypes];
+
+    const alts = await client.db.alt.findMany({
+      where: {
+        guildId: punishment.guildId,
+        mainId: punishment.userId
+      }
+    });
+
+    const altNames = await Promise.all(
+      alts.map(async alt => {
+        const altUser = await client.users.fetch(alt.id);
+        return `${altUser.toString()}`;
+      })
+    );
+
+    const user = await getUser(punishment.userId);
+    return channel.send({
+      content: alts.length > 0 ? `This user has the following alts registered: ${altNames.join(', ')}` : undefined,
+      embeds: [
+        {
+          description: `${user!.toString()} has been **${tense}** | \`${punishment.id}\``,
+          color: punishmentColors[punishment.type as PunishmentType]
+        }
+      ]
+    });
   }
 }

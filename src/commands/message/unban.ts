@@ -39,24 +39,7 @@ class UnbanCommand extends Command {
       }
     });
 
-    const alts = await this.client.db.alt.findMany({
-      where: {
-        guildId: message.guildId,
-        mainId: user.id
-      }
-    });
-
-    const altNames = await Promise.all(
-      alts.map(async alt => {
-        const altUser = await this.client.users.fetch(alt.id);
-        return `${altUser.toString()}`;
-      })
-    );
-
-    message.channel.send({
-      content: alts.length > 0 ? `This user has the following alts registered: ${altNames.join(', ')}` : undefined,
-      embeds: [{ description: `${user.toString()} has been **unbanned** | \`${punishment.id}\``, color: Colors.Green }]
-    });
+    await this.client.punishments.createMessage(punishment, message.channel);
     this.client.punishments.createLog(punishment);
   }
 }

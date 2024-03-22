@@ -74,24 +74,7 @@ class WarnCommand extends Command {
 
     if (!silentFlag) this.client.punishments.createDM(punishment);
 
-    const alts = await this.client.db.alt.findMany({
-      where: {
-        guildId: message.guildId,
-        mainId: member.id
-      }
-    });
-
-    const altNames = await Promise.all(
-      alts.map(async alt => {
-        const altUser = await this.client.users.fetch(alt.id);
-        return `${altUser.toString()}`;
-      })
-    );
-
-    message.channel.send({
-      content: alts.length > 0 ? `This user has the following alts registered: ${altNames.join(', ')}` : undefined,
-      embeds: [{ description: `${member.toString()} has been **warned** | \`${punishment.id}\``, color: Colors.Yellow }]
-    });
+    await this.client.punishments.createMessage(punishment, message.channel);
     this.client.punishments.createLog(punishment);
 
     // ESCALATION CHECK!
