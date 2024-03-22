@@ -14,7 +14,6 @@ The code in this repository is provided on an "AS-IS" basis without warranties o
 Before you start, you muse ensure that you have the following:
 
 * **Node JS**: NodeJS needs to be installed on your machine. See [this page](https://nodejs.org/en/download) for more information.
-* **PostgreSQL Server:** You need to have a PostgreSQL Server up and running to store the data on.
 * **Virtual Private Server (VPS) | Hosting Platform** You need to own and manage a VPS to run the code on. You may also use any other hosting platform, like [railway](https://railway.app/) for example. It is not recommended to host this bot on your personal computer or home network.
 
 ### Installation (VPS)
@@ -40,7 +39,7 @@ cd dans-utilities
 npm install
 ```
 
-4. Make sure your database matches the prisma schema
+4. Make sure your database file matches the prisma schema
 
 ```bash
 npx prisma db push
