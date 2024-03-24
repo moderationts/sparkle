@@ -5,7 +5,9 @@ import {
   ApplicationCommandPermissions,
   Message,
   Colors,
-  SnowflakeUtil
+  SnowflakeUtil,
+  REST,
+  Routes
 } from 'discord.js';
 import client from '../../client';
 import ms from 'ms';
@@ -263,4 +265,26 @@ export function containsProhibitedWords(message: string, prohibitedWords: string
   }
 
   return false;
+}
+
+export async function confirmCommands(guild: Guild) {
+  const commands = [];
+  const commandFiles = fs.readdirSync('./src/commands/slash').filter(file => file.endsWith('.ts'));
+
+  for (const file of commandFiles) {
+    const commandClass = (await import(`../../../dist/commands/slash/${file.slice(0, -3)}`)).default;
+    const commandInstant = new commandClass();
+    commands.push(commandInstant.data.toJSON());
+  }
+
+  const rest = new REST({ version: '10' }).setToken(process.env.TOKEN!);
+
+  try {
+    console.log(`[Client] Started refreshing ${commands.length} application (/) commands for guild ${guild.id}.`);
+    const data: any = await rest.put(Routes.applicationGuildCommands(client.user!.id, guild.id), { body: commands });
+
+    console.log(`[Client] Successfully reloaded ${data.length} application (/) commands for guild ${guild.id}.`);
+  } catch (error) {
+    console.error(error);
+  }
 }

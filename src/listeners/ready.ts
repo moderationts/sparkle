@@ -1,5 +1,6 @@
 import { ActivityType } from 'discord.js';
 import Listener from '../lib/structs/Listener';
+import { confirmCommands } from '../lib/util/functions';
 
 class ReadyListener extends Listener {
   constructor() {
@@ -36,6 +37,10 @@ class ReadyListener extends Listener {
       this.client.user!.setActivity(activities[i]);
       i++;
     }, 15000);
+
+    for (const guild of this.client.guilds.cache.values()) {
+      await confirmCommands(guild);
+    }
   }
 }
 
