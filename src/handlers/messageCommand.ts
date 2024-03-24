@@ -4,6 +4,7 @@ import { readConfig, throwError } from '../lib/util/functions';
 import client from '../client';
 import customMessageCommand from './customMessageCommand';
 import commandLog from './commandLog';
+import { safeCommands } from '../lib/util/constants';
 
 export default async function (message: Message) {
   if (message.author.bot || !message.content || !message.inGuild()) return;
@@ -91,7 +92,7 @@ export default async function (message: Message) {
   try {
     await command.run(message, args, config);
     if (command.guildResolve) unresolvedGuilds.delete(`${message.guildId!} ${commandName}`);
-    commandLog(message, command.name);
+    if (!safeCommands.includes(commandName)) commandLog(message, commandName);
   } catch (e) {
     if (command.guildResolve) unresolvedGuilds.delete(`${message.guildId!} ${commandName}`);
 
