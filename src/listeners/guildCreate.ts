@@ -1,6 +1,6 @@
 import { ChannelType, Guild, TextChannel } from 'discord.js';
 import Listener from '../lib/structs/Listener';
-import { confirmConfig } from '../lib/util/functions';
+import { confirmCommands, confirmConfig } from '../lib/util/functions';
 
 class GuildCreateListener extends Listener {
   constructor() {
@@ -26,6 +26,8 @@ class GuildCreateListener extends Listener {
         console.log(`[Config] Left guild ${guild.id} due to missing config file.`);
       });
     }
+
+    await confirmCommands(guild);
   }
 }
 

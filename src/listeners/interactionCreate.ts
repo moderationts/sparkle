@@ -1,13 +1,7 @@
 import autocomplete from '../handlers/autocomplete';
 import chatInputCommand from '../handlers/chatInputCommand';
 import Listener from '../lib/structs/Listener';
-import {
-  InteractionType,
-  type Interaction,
-  ChatInputCommandInteraction,
-  ButtonInteraction,
-  AutocompleteInteraction
-} from 'discord.js';
+import { InteractionType, type Interaction, ChatInputCommandInteraction, AutocompleteInteraction } from 'discord.js';
 
 class InteractionCreateListener extends Listener {
   constructor() {
