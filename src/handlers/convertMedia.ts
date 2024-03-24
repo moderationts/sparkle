@@ -4,7 +4,7 @@ import client from '../client';
 
 export default async function (message: Message<true>) {
   const config = await readConfig(message.guildId);
-  if (!config || (!config.logging?.mediaConversion?.enabled && !config.logging?.mediaConversion?.logChannelId)) return;
+  if (!config || !config.logging?.mediaConversion?.enabled || !config.logging?.mediaConversion?.logChannelId) return;
 
   if (
     message.attachments.size > 0 &&
