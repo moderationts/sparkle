@@ -134,5 +134,10 @@ export interface ConfigData {
       enabled: boolean;
       channelId: string;
     };
+    mediaConversion?: {
+      enabled: boolean;
+      channelIds: string[];
+      logChannelId: string;
+    };
   };
 }
