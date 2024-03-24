@@ -36,7 +36,7 @@ export default async function (message: Message<true>) {
         message.attachments.size > 1 ? 'attachments' : 'attachment'
       } for ${message.author.toString()} (\`${message.author.id}\`). You can view ${
         message.attachments.size > 1 ? 'them' : 'it'
-      } **[via this link](${hideLinkEmbed(log.url)})**.`,
+      } via **[this link](${hideLinkEmbed(log.url)})**.`,
       allowedMentions: { parse: ['users'] }
     });
   }
