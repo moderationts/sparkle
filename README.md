@@ -203,6 +203,7 @@ Below is a list of supported events. Please do note that only Text Channels are 
 * `punishmentEdit` - Triggers when a punishment is edited (reason, duration), or is removed.
 * `messages` - Triggers when a message (or group of messages) is deleted, or updated.
 * `commands` - Triggers when a command is ran (including shortcuts).
+* `mediaConversion` - Triggers when a message with no content but only attachments is sent into a channel and is converted to a link that never expires.
 
 ```yaml
 logging:
@@ -219,4 +220,8 @@ logging:
   commands:
     enabled: true
     channelId: 'channel-id' # The log channel where the logs will be sent
+  mediaConversion:
+    enabled: true 
+    channelIds: ['channel-id'] # An array of channel ids in which messages with no content but just attachments will trigger the media conversion
+    logChannelId: 'channel-id' # The log channel where the media will be stored.
 ```
