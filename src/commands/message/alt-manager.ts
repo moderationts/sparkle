@@ -6,7 +6,7 @@ import { getUser } from '../../lib/util/functions';
   name: 'alt-manager',
   description: 'Manage the alt accounts of a user.',
   aliases: ['alts'],
-  args: ['alt-manager add <user> <alt>', 'alt-manager remove <user> <alt>', 'alt-manager view <user>'],
+  args: ['add <user> <alt>', 'remove <user> <alt>', 'view <user>'],
   userPermissions: PermissionFlagsBits.ModerateMembers
 })
 class AltManagerCommand extends Command {
