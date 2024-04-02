@@ -2,7 +2,6 @@ import { GuildMember, Message, PermissionFlagsBits, User } from 'discord.js';
 import client from '../client';
 import { PunishmentType as PT } from '@prisma/client';
 import { adequateHierarchy, genID, getFlag, getMember, getUser } from '../lib/util/functions';
-import { pastTensePunishmentTypes, punishmentColors } from '../lib/util/constants';
 import ms from 'ms';
 import numberToWord from 'number-to-words';
 import { Escalation } from '../types';
