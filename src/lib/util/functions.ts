@@ -294,3 +294,25 @@ export async function confirmCommands(guild: Guild) {
     console.error(error);
   }
 }
+
+export async function confirmCtxCommands() {
+  const commands = [];
+  const commandFiles = fs.readdirSync('./src/commands/context').filter(file => file.endsWith('.ts'));
+
+  for (const file of commandFiles) {
+    const commandClass = (await import(`../../../dist/commands/context/${file.slice(0, -3)}`)).default;
+    const commandInstant = new commandClass();
+    commands.push(commandInstant.data.toJSON());
+  }
+
+  const rest = new REST({ version: '10' }).setToken(process.env.TOKEN!);
+
+  try {
+    console.log(`[Client] Started refreshing ${commands.length} application (/) commands.`);
+    const data: any = await rest.put(Routes.applicationCommands(client.user!.id), { body: commands });
+
+    console.log(`[Client] Successfully reloaded ${data.length} application (/) commands.`);
+  } catch (error) {
+    console.error(error);
+  }
+}
