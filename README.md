@@ -19,7 +19,7 @@ Before you start, you muse ensure that you have the following:
 ### Installation (VPS)
 
 The following steps apply to a Windows, Mac, or Linux environment.
-For linux users it is recommened that you create a new sudo user to host the bot and PostgreSQL server on.
+For linux users it is recommened that you create a new sudo user to host the bot on. 
 
 1. Clone the repository or download it from this page
 
