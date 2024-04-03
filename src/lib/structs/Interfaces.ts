@@ -1,3 +1,4 @@
+import { APIEmbed } from 'discord.js';
 import { PunishmentType } from '../util/constants';
 
 export interface PunishmentEdit {
@@ -42,6 +43,8 @@ export interface ConfigData {
     channels?: string[];
     overrides?: bigint;
   };
+
+  tags?: { name: string; aliases: string[]; embed: APIEmbed }[];
 
   automod?: {
     filters?: {
