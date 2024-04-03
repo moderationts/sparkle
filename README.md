@@ -13,9 +13,9 @@ The code in this repository is provided on an "AS-IS" basis without warranties o
 
 Before you start, you muse ensure that you have the following:
 
-* **Node JS**: NodeJS needs to be installed on your machine. See [this page](https://nodejs.org/en/download) for more information.
-* **PostgreSQL Server:** You need to have a PostgreSQL Server up and running to store the data on.
-* **Virtual Private Server (VPS) | Hosting Platform** You need to own and manage a VPS to run the code on. You may also use any other hosting platform, like [railway](https://railway.app/) for example. It is not recommended to host this bot on your personal computer or home network.
+- **Node JS**: NodeJS needs to be installed on your machine. See [this page](https://nodejs.org/en/download) for more information.
+- **PostgreSQL Server:** You need to have a PostgreSQL Server up and running to store the data on.
+- **Virtual Private Server (VPS) | Hosting Platform** You need to own and manage a VPS to run the code on. You may also use any other hosting platform, like [railway](https://railway.app/) for example. It is not recommended to host this bot on your personal computer or home network.
 
 ### Installation (VPS)
 
@@ -114,6 +114,26 @@ lock:
 
 For more information on what overrides can be passed, see [this page](https://discordapi.com/permissions.html).
 
+### Tags
+
+This section allows you to configure the tags (reference texts) for the bot.
+
+```yaml
+tags:
+  - name: 'mod' # The name of the tag
+    aliases: [] # A list of alternative names for it, e.g ['moderation', 'mods']
+    embed: # The embed that is going to get sent
+      color: 0x00ffea # The format must be 0x followed by the hex color code
+      title: 'Moderation Tag' # The title of the embed
+      description: 'Some description...' # The description of the embed
+      fields: # Fields
+        - name: 'Requirements' # Field name
+          value: 'Some requirements...' # Field description
+          inline: false # Can be true as well, the recommended setting is false
+```
+
+For more information on what embed attributes can be passed, see [Discord Documentation](https://discord.com/developers/docs/resources/channel#embed-object).
+
 ### Automod
 
 You know it, you love it. This section allows you to configure the behavior of the bot's automod.
@@ -138,7 +158,7 @@ automod:
       punishment: 'Warn' / 'Mute' / 'Kick' / 'Ban'
       duration: 1234567890 # In milliseconds (not applicable for the kick punishment | cannot be longer than 28 days for mutes)
       customInfo: 'Example info' # A string that overrides the default additional information.
-      fallbackResponse: 'Exampe response' # A message (string) that will get sent whenever automod punishes a user. 
+      fallbackResponse: 'Exampe response' # A message (string) that will get sent whenever automod punishes a user.
       content: ['word 1', 'word 2'] # The list of words that need to be filtered
 
   links:
@@ -149,7 +169,7 @@ automod:
       punishment: 'Warn' / 'Mute' / 'Kick' / 'Ban'
       duration: 1234567890 # In milliseconds (not applicable for the kick punishment | cannot be longer than 28 days for mutes)
       customInfo: 'Example info' # A string that overrides the default additional information.
-      fallbackResponse: 'Exampe response' # A message (string) that will get sent whenever automod punishes a user. 
+      fallbackResponse: 'Exampe response' # A message (string) that will get sent whenever automod punishes a user.
       whitelist: ['youtube.com', 'discord.com'] # The list of domains that are not considered a violation
 
   mentions:
@@ -181,7 +201,7 @@ automod:
       punishment: 'Warn' / 'Mute' / 'Kick' / 'Ban'
       duration: 1234567890 # In milliseconds (not applicable for the kick punishment | cannot be longer than 28 days for mutes)
       customInfo: 'Example info' # A string that overrides the default additional information.
-      fallbackResponse: 'Exampe response' # A message (string) that will get sent whenever automod punishes a user. 
+      fallbackResponse: 'Exampe response' # A message (string) that will get sent whenever automod punishes a user.
       limit: 3 # The maximum number of attachments a message can have
 
     maxCharacters:
@@ -191,20 +211,20 @@ automod:
       punishment: 'Warn' / 'Mute' / 'Kick' / 'Ban'
       duration: 1234567890 # In milliseconds (not applicable for the kick punishment | cannot be longer than 28 days for mutes)
       customInfo: 'Example info' # A string that overrides the default additional information.
-      fallbackResponse: 'Exampe response' # A message (string) that will get sent whenever automod punishes a user. 
+      fallbackResponse: 'Exampe response' # A message (string) that will get sent whenever automod punishes a user.
       limit: 3 # The maximum number of characters a message can have (300 recommended)
-```
+````
 
 ### Logging
 
 This section allows you to configure the behavior of logs the bot sends to channels regarding specific events.
 Below is a list of supported events. Please do note that only Text Channels are supported for logging.
 
-* `punishments` - Triggers when a user is punished.
-* `punishmentEdit` - Triggers when a punishment is edited (reason, duration), or is removed.
-* `messages` - Triggers when a message (or group of messages) is deleted, or updated.
-* `commands` - Triggers when a command is ran (including shortcuts).
-* `mediaConversion` - Triggers when a message with no content but only attachments is sent into a channel and is converted to a link that never expires.
+- `punishments` - Triggers when a user is punished.
+- `punishmentEdit` - Triggers when a punishment is edited (reason, duration), or is removed.
+- `messages` - Triggers when a message (or group of messages) is deleted, or updated.
+- `commands` - Triggers when a command is ran (including shortcuts).
+- `mediaConversion` - Triggers when a message with no content but only attachments is sent into a channel and is converted to a link that never expires.
 
 ```yaml
 logging:
@@ -222,7 +242,7 @@ logging:
     enabled: true
     channelId: 'channel-id' # The log channel where the logs will be sent
   mediaConversion:
-    enabled: true 
+    enabled: true
     channelIds: ['channel-id'] # An array of channel ids in which messages with no content but just attachments will trigger the media conversion
     logChannelId: 'channel-id' # The log channel where the media will be stored.
 ```

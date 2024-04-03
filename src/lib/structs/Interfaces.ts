@@ -1,4 +1,5 @@
 import { PunishmentType } from '@prisma/client';
+import { APIEmbed } from 'discord.js';
 
 export interface PunishmentEdit {
   id: string;
@@ -42,6 +43,8 @@ export interface ConfigData {
     channels?: string[];
     overrides?: bigint;
   };
+
+  tags?: { name: string; aliases: string[]; embed: APIEmbed }[];
 
   automod?: {
     filters?: {
