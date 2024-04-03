@@ -1,8 +1,8 @@
 import {
   ApplicationCommandType,
   ContextMenuCommandBuilder,
-  ContextMenuCommandInteraction,
-  PermissionFlagsBits
+  PermissionFlagsBits,
+  UserContextMenuCommandInteraction
 } from 'discord.js';
 import CtxMenu, { ctxdata } from '../../lib/structs/Context';
 import { mainColor } from '../../lib/util/constants';
@@ -14,9 +14,7 @@ import { mainColor } from '../../lib/util/constants';
     .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages)
 )
 class AvatarCtxMenu extends CtxMenu {
-  async run(interaction: ContextMenuCommandInteraction) {
-    if (!interaction.isUserContextMenuCommand()) throw 'This command can only be ran on a user.';
-
+  async run(interaction: UserContextMenuCommandInteraction<'cached'>) {
     const user = interaction.targetUser;
 
     return interaction.reply({

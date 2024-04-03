@@ -1,11 +1,6 @@
 import { PunishmentType } from '@prisma/client';
 import { PreconditionType } from '../lib/util/constants';
 
-export type AutoModSpamTrigger = {
-  amount: number;
-  within: number;
-};
-
 export type EscalationType = 'Manual' | 'AutoMod';
 
 export type Escalation = {

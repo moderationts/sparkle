@@ -1,4 +1,4 @@
-import { Collection, Colors, EmbedBuilder, Message, PartialMessage } from 'discord.js';
+import { Collection, EmbedBuilder, Message } from 'discord.js';
 import Listener from '../lib/structs/Listener';
 import { bin } from '../lib/util/functions';
 import { mainColor } from '../lib/util/constants';

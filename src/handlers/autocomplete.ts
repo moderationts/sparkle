@@ -55,43 +55,5 @@ export default async function (interaction: AutocompleteInteraction<'cached'>) {
 
       return interaction.respond(respondData);
     }
-    case 'command': {
-      const commands = client.commands.slash;
-      const aliases = client.aliases;
-
-      let firstMatches = [...commands.keys(), ...aliases.keys()];
-
-      if (interaction.inCachedGuild()) {
-        const { shortcuts } = (await client.db.guild.findUnique({
-          where: {
-            id: interaction.guildId
-          },
-          select: { shortcuts: true }
-        }))!;
-
-        firstMatches.push(...shortcuts.map(s => s.name));
-      }
-
-      firstMatches = firstMatches.filter(name => name.includes(focusedLowercase));
-
-      const aliasesOmited: string[] = [];
-      for (const match of firstMatches) {
-        if (commands.has(match)) aliasesOmited.push(match);
-        else if (aliases.has(match)) {
-          const matchingCommand = commands.get(aliases.get(match)!)!;
-          if (!aliasesOmited.includes(matchingCommand.data.name!)) aliasesOmited.push(matchingCommand.data.name!);
-        } else aliasesOmited.push(match);
-      }
-
-      const evalIndex = aliasesOmited.indexOf('eval');
-      if (evalIndex !== -1) aliasesOmited.splice(evalIndex, 1);
-
-      const final = aliasesOmited
-        .sort((a, b) => a.localeCompare(b))
-        .slice(0, 25)
-        .map(c => ({ name: c, value: c }));
-
-      return interaction.respond(final);
-    }
   }
 }
