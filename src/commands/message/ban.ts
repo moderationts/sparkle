@@ -33,7 +33,7 @@ class BanCommand extends Command {
 
       if (!adequateHierarchy(message.guild.members.me!, user))
         return message.reply(
-          "**Configuration error.**\n>I cannot ban this member due to inadequete hierarchy.\n> To fix this, make sure my role is above this member's highest position role."
+          "**Configuration error.**\n> I cannot ban this member due to inadequete hierarchy.\n> To fix this, make sure my role is above this member's highest position role."
         );
     }
 
