@@ -5,6 +5,7 @@ import fs from 'fs';
 import type Command from './Command';
 import type Listener from './Listener';
 import type Modal from './Modal';
+import CtxMenu from './Context';
 import Button from './Button';
 import PunishmentManager from './PunishmentManager';
 
@@ -12,7 +13,8 @@ class Client extends DJSClient {
   public db = new PrismaClient();
   public commands = {
     slash: new Map<string, Command>(),
-    message: new Map<string, Command<true>>()
+    message: new Map<string, Command<true>>(),
+    context: new Map<string, CtxMenu<true>>()
   };
   public aliases = new Map<string, string>();
 
@@ -83,6 +85,15 @@ class Client extends DJSClient {
     }
   }
 
+  async _cacheContextMenuCommands() {
+    const files = fs.readdirSync(`src/commands/context`);
+    for (const file of files) {
+      const cmdClass = (await import(`../../commands/context/${file.slice(0, -3)}`)).default;
+      const cmdInstant: CtxMenu = new cmdClass();
+      this.commands.context.set(cmdInstant.data.name!, cmdInstant);
+    }
+  }
+
   async _loadListeners() {
     const files = fs.readdirSync('src/listeners');
     for (const file of files) {
@@ -97,6 +108,7 @@ class Client extends DJSClient {
   override async login(token: string) {
     await this._cacheSlashCommands();
     await this._cacheMessageCommands();
+    await this._cacheContextMenuCommands();
     await this._loadListeners();
 
     this.db.$use(

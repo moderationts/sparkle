@@ -1,4 +1,4 @@
-import { ChannelType, Guild, REST, Routes, TextChannel } from 'discord.js';
+import { Guild } from 'discord.js';
 import Listener from '../lib/structs/Listener';
 import { confirmConfig, confirmCommands, readConfig } from '../lib/util/functions';
 

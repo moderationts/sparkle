@@ -1,6 +1,6 @@
 import { ActivityType } from 'discord.js';
 import Listener from '../lib/structs/Listener';
-import { confirmCommands, confirmConfig, readConfig } from '../lib/util/functions';
+import { confirmCommands, confirmConfig, confirmCtxCommands, readConfig } from '../lib/util/functions';
 
 class ReadyListener extends Listener {
   constructor() {
@@ -11,7 +11,7 @@ class ReadyListener extends Listener {
     const commands = await this.client.application!.commands.fetch();
 
     for (const cmd of commands.values()) {
-      const command = this.client.commands.slash.get(cmd.name)!;
+      const command = this.client.commands.slash.get(cmd.name)! ?? this.client.commands.context.get(cmd.name)!;
       command.id = cmd.id;
     }
     console.log(`Logged in as ${this.client.user!.username}.`);
@@ -46,6 +46,7 @@ class ReadyListener extends Listener {
         });
       await readConfig(guild.id);
       await confirmCommands(guild);
+      await confirmCtxCommands();
     }
   }
 }
