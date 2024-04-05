@@ -9,7 +9,7 @@ import { mainColor } from '../../lib/util/constants';
 
 @ctxdata(
   new ContextMenuCommandBuilder()
-    .setName('avatar')
+    .setName('View Avatar')
     .setType(ApplicationCommandType.User)
     .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages)
 )
