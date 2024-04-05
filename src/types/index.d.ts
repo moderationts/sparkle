@@ -23,7 +23,7 @@ type MessageCommandProperties = {
   precondition?: PreconditionType;
 };
 
-export type CommandProperties<M extends 'slash' | 'message'> = M extends 'message'
+export type CommandProperties<M extends 'slash' | 'message' | 'context'> = M extends 'message'
   ? MessageCommandProperties
   : {
       clientPermissions?: bigint | bigint[];
