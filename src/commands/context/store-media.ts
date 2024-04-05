@@ -10,7 +10,7 @@ import { ConfigData } from '../../lib/structs/Interfaces';
 
 @ctxdata(
   new ContextMenuCommandBuilder()
-    .setName('store-media')
+    .setName('Store Media')
     .setType(ApplicationCommandType.Message)
     .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages)
 )
