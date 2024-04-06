@@ -22,6 +22,7 @@ import { PunishmentType } from '@prisma/client';
 })
 class ViewPunishmentsCtxMenu extends Command {
   async run(interaction: UserContextMenuCommandInteraction<'cached'>) {
+    await interaction.deferReply({ ephemeral: true });
     const user = interaction.targetUser;
     let page = 1;
 
@@ -33,7 +34,7 @@ class ViewPunishmentsCtxMenu extends Command {
     });
 
     if (punishmentCount === 0)
-      return interaction.reply(`${user === interaction.user ? 'You have' : 'That user has'} no strikes.`);
+      return interaction.editReply(`${user === interaction.user ? 'You have' : 'That user has'} no strikes.`);
 
     const pages = Math.ceil(punishmentCount / 7);
     if (page > pages) page = pages;
@@ -78,7 +79,7 @@ class ViewPunishmentsCtxMenu extends Command {
 
     punishmentsEmbed.setFields(fields);
 
-    return interaction.reply({ embeds: [punishmentsEmbed], ephemeral: true });
+    return interaction.editReply({ embeds: [punishmentsEmbed], ephemeral: true });
   }
 }
 
