@@ -79,7 +79,7 @@ class ViewPunishmentsCtxMenu extends Command {
 
     punishmentsEmbed.setFields(fields);
 
-    return interaction.editReply({ embeds: [punishmentsEmbed], ephemeral: true });
+    return interaction.editReply({ embeds: [punishmentsEmbed] });
   }
 }
 
