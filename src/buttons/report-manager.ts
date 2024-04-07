@@ -134,7 +134,7 @@ class ReportManagerButton extends Button {
             .setDescription(
               `Hey ${reporter!.toString()}! Your report in from <t:${Math.floor(
                 Number(report.date / 1000n)
-              )}:R> has been denued.\nYou reported ${user!.toString()} (\`${user!.id}\`) for [this reason](${await bin(
+              )}:R> has been denied.\nYou reported ${user!.toString()} (\`${user!.id}\`) for [this reason](${await bin(
                 report.reason
               )}).`
             )
