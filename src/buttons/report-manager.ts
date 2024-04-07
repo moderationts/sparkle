@@ -123,22 +123,6 @@ class ReportManagerButton extends Button {
             const reporter = await getUser(report.reporterId);
             const user = await getUser(userId);
 
-          const denyEmbed = new EmbedBuilder()
-            .setAuthor({
-              name: `${interaction.guild.name}`,
-              iconURL: interaction.guild.iconURL()!
-            })
-            .setColor(Colors.Red)
-            .setTitle('Report Denied')
-            .setDescription(
-              `Hey ${reporter!.toString()}! Your report in from <t:${Math.floor(
-                Number(report.date / 1000n)
-              )}:R> has been denied.\nYou reported ${user!.toString()} (\`${user!.id}\`) for [this reason](${await bin(
-                report.reason
-              )}).`
-            )
-            .setFooter({ text: `Report ID: ${report.id}` })
-            .setTimestamp();
             const denyEmbed = new EmbedBuilder()
               .setAuthor({
                 name: `${interaction.guild.name}`,
@@ -149,7 +133,7 @@ class ReportManagerButton extends Button {
               .setDescription(
                 `Hey ${reporter!.toString()}! Your report in from <t:${Math.floor(
                   Number(report.date / 1000n)
-                )}:R> has been denued.\nYou reported ${user!.toString()} (\`${
+                )}:R> has been denied.\nYou reported ${user!.toString()} (\`${
                   user!.id
                 }\`) for [this reason](${await bin(report.reason)}).`
               )
@@ -315,7 +299,7 @@ class ReportManagerButton extends Button {
               .setDescription(
                 `Hey ${reporter!.toString()}! Your report from <t:${Math.floor(
                   Number(report.date / 1000n)
-                )}:R> has been denued.\nYou reported a message from ${user!.toString()} (\`${
+                )}:R> has been denied.\nYou reported a message from ${user!.toString()} (\`${
                   user!.id
                 }\`) for [this reason](${await bin(report.reason)}).`
               )
