@@ -137,14 +137,24 @@ For more information on what embed attributes can be passed, see [Discord Docume
 
 This section allows you to configure the report system, which allows for users to report others.
 
+### Reports
+
+This section allows you to configure the report system, which allows for users to report other users, or messages..
+
 ```yaml
 reports:
-  enabled: true # A boolean (true/false)
-  channelId: 'channel-id' # The channel in which reports will be logged
-  excluded: ['role-id', 'role-id'] # An array of role ids immune to reports
-  blacklisted: ['role-id', 'role-id'] # An array of role ids blacklisted from creating reports
-```
+  user: # User Reports
+    enabled: true # A boolean (true/false)
+    channelId: 'channel-id' # The channel in which user reports will be logged
+    excluded: ['role-id', 'role-id'] # An array of role ids immune to user reports
+    blacklist: ['role-id', 'role-id'] # An array of role ids blacklisted from creating user reports
 
+  message: # Message Reports
+    enabled: true # A boolean (true/false)
+    channelId: 'channel-id' # The channel in which message reports will be logged
+    excluded: ['role-id', 'role-id'] # An array of role ids immune to message reports
+    blacklist: ['role-id', 'role-id'] # An array of role ids blacklisted from creating message reports
+```
 ### Automod
 
 You know it, you love it. This section allows you to configure the behavior of the bot's automod.

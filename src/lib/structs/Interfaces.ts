@@ -47,10 +47,18 @@ export interface ConfigData {
   tags?: { name: string; aliases: string[]; embed: APIEmbed }[];
 
   reports: {
-    enabled: boolean;
-    channelId: string;
-    excluded: string[];
-    blacklisted: string[];
+    user?: {
+      enabled: boolean;
+      channelId: string;
+      excluded: string[];
+      blacklist: string[];
+    };
+    message?: {
+      enabled: boolean;
+      channelId: string;
+      excluded: string[];
+      blacklist: string[];
+    };
   };
 
   automod?: {

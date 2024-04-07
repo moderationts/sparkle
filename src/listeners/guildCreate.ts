@@ -16,7 +16,7 @@ class GuildCreateListener extends Listener {
       });
     }
 
-    await readConfig(guild.id);
+    await readConfig(guild);
     await confirmCommands(guild);
   }
 }

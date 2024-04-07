@@ -117,7 +117,8 @@ export function genID(): string {
   return String(SnowflakeUtil.generate({ timestamp: currentDate.getTime() }));
 }
 
-export async function readConfig(guildId: string): Promise<ConfigData | null> {
+export async function readConfig(guild: Guild): Promise<ConfigData | null> {
+  const guildId = guild.id;
   const configFile = await confirmConfig(guildId);
   if (!configFile) return null;
   const configFilePath = getConfigFilePath(guildId);
@@ -276,6 +277,7 @@ export function containsProhibitedWords(message: string, prohibitedWords: string
 export async function confirmCommands(guild: Guild) {
   const commands = [];
   const commandFiles = fs.readdirSync('./src/commands/slash').filter(file => file.endsWith('.ts'));
+  const ctxCommandFiles = fs.readdirSync('./src/commands/context').filter(file => file.endsWith('.ts'));
 
   for (const file of commandFiles) {
     const commandClass = (await import(`../../../dist/commands/slash/${file.slice(0, -3)}`)).default;
@@ -283,23 +285,7 @@ export async function confirmCommands(guild: Guild) {
     commands.push(commandInstant.data.toJSON());
   }
 
-  const rest = new REST({ version: '10' }).setToken(process.env.TOKEN!);
-
-  try {
-    console.log(`[Client] Started refreshing ${commands.length} slash (/) commands for guild ${guild.id}.`);
-    const data: any = await rest.put(Routes.applicationGuildCommands(client.user!.id, guild.id), { body: commands });
-
-    console.log(`[Client] Successfully reloaded ${data.length} slash (/) commands for guild ${guild.id}.`);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-export async function confirmCtxCommands() {
-  const commands = [];
-  const commandFiles = fs.readdirSync('./src/commands/context').filter(file => file.endsWith('.ts'));
-
-  for (const file of commandFiles) {
+  for (const file of ctxCommandFiles) {
     const commandClass = (await import(`../../../dist/commands/context/${file.slice(0, -3)}`)).default;
     const commandInstant = new commandClass();
     commands.push(commandInstant.data.toJSON());
@@ -308,10 +294,10 @@ export async function confirmCtxCommands() {
   const rest = new REST({ version: '10' }).setToken(process.env.TOKEN!);
 
   try {
-    console.log(`[Client] Started refreshing ${commands.length} global application (/) commands.`);
-    const data: any = await rest.put(Routes.applicationCommands(client.user!.id), { body: commands });
+    console.log(`[Client] Started refreshing ${commands.length} application (/) commands for guild ${guild.id}.`);
+    const data: any = await rest.put(Routes.applicationGuildCommands(client.user!.id, guild.id), { body: commands });
 
-    console.log(`[Client] Successfully reloaded ${data.length} global application (/) commands.`);
+    console.log(`[Client] Successfully reloaded ${data.length} application (/) commands for guild ${guild.id}.`);
   } catch (error) {
     console.error(error);
   }
