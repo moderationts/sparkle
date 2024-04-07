@@ -93,7 +93,7 @@ model Alt {
 }
 
 model Report {
-  id         String?
+  id         String     @id @unique
   guildId    String
   userId     String
   reporterId String
@@ -101,6 +101,4 @@ model Report {
   reason     String
   date       BigInt
   Guild      Guild      @relation(fields: [guildId], references: [id], onDelete: Cascade)
-
-  @@unique([reason])
 }

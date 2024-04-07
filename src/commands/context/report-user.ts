@@ -33,6 +33,9 @@ class ReportUserCtxMenu extends Command {
     if (interaction.targetMember!.roles.cache.some(role => config.data.reports?.excluded.includes(role.id)))
       throw 'This user is immune to reports.';
 
+    if (interaction.member.roles.cache.some(role => config.data.reports?.blacklist.includes(role.id)))
+      throw 'You are blacklisted from creating reports.';
+
     const modal = new ModalBuilder();
     modal.setTitle('Report User').setCustomId(`report:user.${user.id}`);
 

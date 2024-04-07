@@ -50,6 +50,7 @@ export interface ConfigData {
     enabled: boolean;
     channelId: string;
     excluded: string[];
+    blacklist: string[];
   };
 
   automod?: {

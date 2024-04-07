@@ -28,7 +28,7 @@ class ReportModal extends Modal {
     interaction.deferReply({ ephemeral: true });
 
     if (type === 'user') {
-      const exists = await this.client.db.report.findUnique({
+      const exists = await this.client.db.report.findFirst({
         where: {
           guildId: interaction.guildId,
           userId: user!.id,
@@ -37,8 +37,7 @@ class ReportModal extends Modal {
         }
       });
 
-      if (exists) throw 'A report with these details already exists.';
-
+      if (exists) throw 'You have already submitted a report with these details.';
       if (!config.data.reports?.channelId) throw 'The reports channel has not been configured.';
 
       const report = await this.client.db.report.create({
@@ -102,7 +101,7 @@ class ReportModal extends Modal {
         }\`) for \`${reason}\`. Your report ID is \`${report.id}\`.`
       });
       return;
-    } 
+    }
   }
 }
 
