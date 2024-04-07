@@ -9,7 +9,7 @@ abstract class Modal {
     this.name = name;
   }
 
-  abstract run(interaction: ModalSubmitInteraction): unknown;
+  abstract run(interaction: ModalSubmitInteraction, ...args: any[]): unknown;
 }
 
 export default Modal;

@@ -93,3 +93,8 @@ export enum PunishmentType {
   Unmute = 'Unmute',
   Unban = 'Unban'
 }
+
+export enum ReportType {
+  User = 'User',
+  Message = 'Message'
+}

@@ -19,6 +19,7 @@ model Guild {
   locks       Lock[]
   shortcuts   Shortcut[]
   alts        Alt[]
+  reports     Report[]
 }
 
 model Punishment {
@@ -74,6 +75,18 @@ model Alt {
   id      String @id
   mainId  String
   guildId String
+
+  Guild Guild @relation(fields: [guildId], references: [id], onDelete: Cascade)
+}
+
+model Report {
+  id         String @id @unique
+  guildId    String
+  userId     String
+  reporterId String
+  type       String
+  reason     String
+  date       BigInt
 
   Guild Guild @relation(fields: [guildId], references: [id], onDelete: Cascade)
 }

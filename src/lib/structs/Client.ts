@@ -64,6 +64,24 @@ class Client extends DJSClient {
     });
   }
 
+  async _cacheModals() {
+    const files = fs.readdirSync('src/modals');
+    for (const file of files) {
+      const modalClass = (await import(`../../modals/${file.slice(0, -3)}`)).default;
+      const modalInstant: Modal = new modalClass();
+      this.modals.set(modalInstant.name, modalInstant);
+    }
+  }
+
+  async _cacheButtons() {
+    const files = fs.readdirSync('src/buttons');
+    for (const file of files) {
+      const buttonClass = (await import(`../../buttons/${file.slice(0, -3)}`)).default;
+      const buttonInstant: Button = new buttonClass();
+      this.buttons.set(buttonInstant.name, buttonInstant);
+    }
+  }
+
   async _cacheSlashCommands() {
     const files = fs.readdirSync(`src/commands/slash`);
     for (const file of files) {
@@ -105,6 +123,8 @@ class Client extends DJSClient {
   }
 
   override async login(token: string) {
+    await this._cacheButtons();
+    await this._cacheModals();
     await this._cacheSlashCommands();
     await this._cacheContextMenuCommands();
     await this._cacheMessageCommands();
