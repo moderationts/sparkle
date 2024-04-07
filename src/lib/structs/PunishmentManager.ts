@@ -1,13 +1,14 @@
 import { Punishment, PunishmentType } from '@prisma/client';
 import { Colors, EmbedBuilder, GuildTextBasedChannel } from 'discord.js';
-import { punishmentColors, pastTensePunishmentTypes, mainColor } from '../util/constants';
+import { punishmentColors, pastTensePunishmentTypes } from '../util/constants';
 import client from '../../client';
-import { bin, formatDuration, getMember, getUser, readConfig } from '../util/functions';
+import { bin, formatDuration, getMember, getUser } from '../util/functions';
 import { PunishmentEdit } from './Interfaces';
+import Config from '../util/config';
 
 export default class PunishmentManager {
   async createDM(punishment: Punishment, customInfo?: string | null) {
-    const config = await readConfig(punishment.guildId);
+    const config = Config.get(punishment.guildId)!;
 
     const dm = new EmbedBuilder()
       .setColor(punishmentColors[punishment.type])
@@ -25,20 +26,20 @@ export default class PunishmentManager {
     else
       switch (punishment.type) {
         case PunishmentType.Ban:
-          if (config!.punishments?.additionalInfo?.ban)
-            dm.addFields([{ name: 'Additional Information', value: config!.punishments.additionalInfo.ban }]);
+          if (config!.data.punishments?.additionalInfo?.ban)
+            dm.addFields([{ name: 'Additional Information', value: config!.data.punishments.additionalInfo.ban }]);
           break;
         case PunishmentType.Kick:
-          if (config!.punishments?.additionalInfo?.kick)
-            dm.addFields([{ name: 'Additional Information', value: config!.punishments.additionalInfo.kick }]);
+          if (config!.data.punishments?.additionalInfo?.kick)
+            dm.addFields([{ name: 'Additional Information', value: config!.data.punishments.additionalInfo.kick }]);
           break;
         case PunishmentType.Mute:
-          if (config!.punishments?.additionalInfo?.mute)
-            dm.addFields([{ name: 'Additional Information', value: config!.punishments.additionalInfo.mute }]);
+          if (config!.data.punishments?.additionalInfo?.mute)
+            dm.addFields([{ name: 'Additional Information', value: config!.data.punishments.additionalInfo.mute }]);
           break;
         case PunishmentType.Warn:
-          if (config!.punishments?.additionalInfo?.warn)
-            dm.addFields([{ name: 'Additional Information', value: config!.punishments.additionalInfo.warn }]);
+          if (config!.data.punishments?.additionalInfo?.warn)
+            dm.addFields([{ name: 'Additional Information', value: config!.data.punishments.additionalInfo.warn }]);
           break;
       }
 
@@ -56,11 +57,11 @@ export default class PunishmentManager {
   }
 
   async createLog(punishment: Punishment, content?: string | null) {
-    const config = await readConfig(punishment.guildId);
+    const config = Config.get(punishment.guildId)!;
 
-    if (!config!.logging?.punishments?.enabled && !config!.logging?.punishments?.channelId) return false;
+    if (!config!.data.logging?.punishments?.enabled && !config!.data.logging?.punishments?.channelId) return false;
 
-    const channel = await client.channels.fetch(config!.logging.punishments.channelId)!;
+    const channel = await client.channels.fetch(config!.data.logging.punishments.channelId)!;
     if (!channel || !channel.isTextBased()) return false;
 
     const user = await getUser(punishment.userId);
@@ -97,10 +98,11 @@ export default class PunishmentManager {
     editType: 'reason' | 'expiration' | 'delete' | 'bulkdelete',
     ids?: string[]
   ) {
-    const config = await readConfig(punishment.guildId);
-    if (!config!.logging?.punishmentEdit?.enabled && !config!.logging?.punishmentEdit?.channelId) return false;
+    const config = Config.get(punishment.guildId);
+    if (!config!.data.logging?.punishmentEdit?.enabled && !config!.data.logging?.punishmentEdit?.channelId)
+      return false;
 
-    const channel = await client.channels.fetch(config!.logging.punishmentEdit.channelId);
+    const channel = await client.channels.fetch(config!.data.logging.punishmentEdit.channelId);
     if (!channel || !channel.isTextBased()) return false;
 
     const moderator = await getUser(punishment.moderatorId);

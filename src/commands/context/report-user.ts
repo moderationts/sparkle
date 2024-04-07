@@ -19,9 +19,9 @@ class ReportUserCtxMenu extends Command {
   async run(interaction: UserContextMenuCommandInteraction<'cached'>) {
     const config = Config.get(interaction.guildId)!;
 
-    if (!config.data.reports?.enabled && !config.data.reports?.channelId)
+    if (!config.data.reports?.user?.enabled && !config.data.reports?.user?.channelId)
       return interaction.reply({
-        content: `**Configuration error.**\n> The command could not be executed as the reports module has not been configured for this server.\n> To fix this, please ask a bot operator to configure the settings in the configuration file.`,
+        content: `**Configuration error.**\n> The command could not be executed as the user reports module has not been configured for this server.\n> To fix this, please ask a bot operator to configure the settings in the configuration file.`,
         ephemeral: false
       });
 
@@ -30,10 +30,11 @@ class ReportUserCtxMenu extends Command {
     if (user === interaction.user) throw 'You cannot report yourself.';
     if (user === this.client.user) throw 'You cannot report me.';
 
-    if (interaction.targetMember!.roles.cache.some(role => config.data.reports?.excluded.includes(role.id)))
+    const member = await interaction.guild.members.fetch(interaction.targetUser);
+    if (member!.roles.cache.some(role => config.data.reports?.user?.excluded?.includes(role.id)))
       throw 'This user is immune to reports.';
 
-    if (interaction.member.roles.cache.some(role => config.data.reports?.blacklist.includes(role.id)))
+    if (interaction.member.roles.cache.some(role => config.data.reports?.user?.blacklist?.includes(role.id)))
       throw 'You are blacklisted from creating reports.';
 
     const modal = new ModalBuilder();
