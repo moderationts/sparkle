@@ -46,6 +46,12 @@ export interface ConfigData {
 
   tags?: { name: string; aliases: string[]; embed: APIEmbed }[];
 
+  reports?: {
+    enabled: boolean;
+    channelId: string;
+    excluded: string[];
+  };
+
   automod?: {
     filters?: {
       name: string;

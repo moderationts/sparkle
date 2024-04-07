@@ -9,7 +9,7 @@ abstract class Button {
     this.name = name;
   }
 
-  abstract run(interaction: ButtonInteraction): unknown;
+  abstract run(interaction: ButtonInteraction, ...args: any[]): unknown;
 }
 
 export default Button;

@@ -16,6 +16,11 @@ enum PunishmentType {
   Unban
 }
 
+enum ReportType {
+  User
+  Message
+}
+
 model Guild {
   id String @id
 
@@ -27,6 +32,7 @@ model Guild {
   locks       Lock[]
   shortcuts   Shortcut[]
   alts        Alt[]
+  reports     Report[]
 }
 
 model Punishment {
@@ -82,6 +88,18 @@ model Alt {
   id      String @id
   mainId  String
   guildId String
+
+  Guild Guild @relation(fields: [guildId], references: [id], onDelete: Cascade)
+}
+
+model Report {
+  id         String?
+  guildId    String
+  userId     String     @id
+  reporterId String
+  type       ReportType
+  reason     String
+  date       BigInt
 
   Guild Guild @relation(fields: [guildId], references: [id], onDelete: Cascade)
 }
