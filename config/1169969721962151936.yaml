@@ -67,6 +67,19 @@ tags:
         - name: "Why is slowmode so high?"
           value: "In order to effectively moderate chat, slowmode needs to be high so that moderators can view and punish users that break the rules. You can level up to gain access to chats with no slowmode!"
           inline: false
+
+reports:
+  user: # User Reports
+    enabled: true # A boolean (true/false)
+    channelId: '1219614615172808755' # The channel in which message reports will be logged
+    excluded: ['1170309932214653001', '1219273039565422623'] # An array of role ids immune to message reports
+    blacklist: ['1226057208874405938'] # An array of role ids blacklisted from creating message report
+
+  message: # Message Reports
+    enabled: true # A boolean (true/false)
+    channelId: '1219614615172808755' # The channel in which message reports will be logged
+    excluded: ['1170309932214653001', '1219273039565422623'] # An array of role ids immune to message reports
+    blacklist: ['1226057208874405938'] # An array of role ids blacklisted from creating message report
           
 automod:
   filters:
