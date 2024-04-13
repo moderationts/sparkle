@@ -23,7 +23,7 @@ class TagCommand extends Command {
 
     const name = args.join(' ');
 
-    const tag = config.tags?.find(tag => tag.name === name ?? tag.aliases.includes(name));
+    let tag = config.tags?.find(tag => tag.name === name || tag.aliases.includes(name));
     if (!tag) throw 'That tag does not exist.';
 
     message.delete().catch(() => {});
