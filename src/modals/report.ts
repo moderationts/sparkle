@@ -157,7 +157,7 @@ class ReportModal extends Modal {
                 message.channel.id
               }\`)\n**Message Preview:** \`\`\`${message.content.slice(0, 100)}${
                 message.content.length > 100 ? '...' : ''
-              }\n\`\`\`**Report Reason:** \`\`\`${reason}\`\`\``
+              }\`\`\`\n**Report Reason:** \`\`\`${reason}\`\`\``
             )
             .setFooter({ text: 'Report Received' })
             .setTimestamp(Date.now());
