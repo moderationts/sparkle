@@ -23,7 +23,7 @@ class ReportModal extends Modal {
     const config = Config.get(interaction.guildId)!;
     const type = interaction.customId.split(':')[1].split('.')[0];
 
-    interaction.deferReply({ ephemeral: true });
+    await interaction.deferReply({ ephemeral: true });
 
     switch (type) {
       case 'user': {
