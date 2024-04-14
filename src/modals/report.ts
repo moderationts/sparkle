@@ -67,9 +67,9 @@ class ReportModal extends Modal {
             })
             .setColor(Colors.Yellow)
             .setDescription(
-              `**Report ID:** \`${report.id}\`\n**Report Type:** User\n\n**Reported User:** ${user!.toString()} (${
+              `**Report ID:** \`${report.id}\`\n**Report Type:** User\n\n**Reported User:** ${user!.toString()} (\`${
                 user?.id
-              })\n**Report Reason:** \`\`\`${reason}\`\`\``
+              }\`)\n**Report Reason:** \`\`\`${reason}\`\`\``
             )
             .setFooter({ text: 'Report Received' })
             .setTimestamp(Date.now());
