@@ -153,7 +153,9 @@ class ReportModal extends Modal {
             .setDescription(
               `**Report ID:** \`${report.id}\`\n**Report Type:** Message\n\n**Reported Message ID:** \`${
                 message.id
-              }\`\n**Channel ID:** ${message.channel.toString()} (\`${
+              }\`\n**Reported Message URL:** [Click Me!](${hideLinkEmbed(
+                message.url
+              )})\n**Channel ID:** ${message.channel.toString()} (\`${
                 message.channel.id
               }\`)\n**Message Preview:** \`\`\`${message.content.slice(0, 100)}${
                 message.content.length > 100 ? '...' : ''
