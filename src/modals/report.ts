@@ -23,7 +23,7 @@ class ReportModal extends Modal {
     const config = Config.get(interaction.guildId)!;
     const type = interaction.customId.split(':')[1].split('.')[0];
 
-    interaction.deferReply({ ephemeral: true });
+    await interaction.deferReply({ ephemeral: true });
 
     switch (type) {
       case 'user': {
@@ -67,9 +67,9 @@ class ReportModal extends Modal {
             })
             .setColor(Colors.Yellow)
             .setDescription(
-              `**Report ID:** \`${report.id}\`\n**Report Type:** User\n\n**Reported User:** ${user!.toString()} (${
+              `**Report ID:** \`${report.id}\`\n**Report Type:** User\n\n**Reported User:** ${user!.toString()} (\`${
                 user?.id
-              })\n**Report Reason:** \`\`\`${reason}\`\`\``
+              }\`)\n**Report Reason:** \`\`\`${reason}\`\`\``
             )
             .setFooter({ text: 'Report Received' })
             .setTimestamp(Date.now());
@@ -153,11 +153,13 @@ class ReportModal extends Modal {
             .setDescription(
               `**Report ID:** \`${report.id}\`\n**Report Type:** Message\n\n**Reported Message ID:** \`${
                 message.id
-              }\`\n**Channel ID:** ${message.channel.toString()} (\`${
+              }\`\n**Reported Message URL:** [Click Me!](${hideLinkEmbed(
+                message.url
+              )})\n**Channel ID:** ${message.channel.toString()} (\`${
                 message.channel.id
               }\`)\n**Message Preview:** \`\`\`${message.content.slice(0, 100)}${
                 message.content.length > 100 ? '...' : ''
-              }\n\`\`\`**Report Reason:** \`\`\`${reason}\`\`\``
+              }\`\`\`\n**Report Reason:** \`\`\`${reason}\`\`\``
             )
             .setFooter({ text: 'Report Received' })
             .setTimestamp(Date.now());
