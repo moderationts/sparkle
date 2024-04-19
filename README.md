@@ -263,5 +263,5 @@ logging:
   mediaConversion:
     enabled: true
     channelIds: ['channel-id'] # An array of channel ids in which messages with no content but just attachments will trigger the media conversion
-    logChannelId: 'channel-id' # The log channel where the media will be stored.
+    logChannelId: 'channel-id' # The log channel where the media will be stored. 
 ```
