@@ -8,7 +8,6 @@ import { pastTensePunishmentTypes, punishmentColors } from './lib/util/constants
 const MS_1_MINUTE = 60000;
 const MS_24_HOURS = 86400000;
 
-// for infractions
 setInterval(async () => {
   await client.db.punishment.deleteMany({
     where: {
