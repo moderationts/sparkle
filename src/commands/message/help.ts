@@ -97,9 +97,13 @@ class HelpCommand extends Command {
       .setTitle('Command List')
       .setColor(mainColor)
       .setDescription(
-        "Commands that are ~~crossed over~~ indicate they're only available via slash commands. Optional arguments are marked with `[]` and required ones with `<>`."
+        "Commands that are ~~crossed over~~ indicate they're only available via slash commands. Optional arguments are marked with `[]` and required ones with `<>`. *Context menus do not have a help menu due to lacking descriptions and other command properties.*"
       )
       .addFields(
+        {
+          name: 'Context Menus',
+          value: '`report-user`, `report-message`, `store-media`, `view-avatar`, `view-punishments`'
+        },
         {
           name: 'Management',
           value: '`config`, ~~`escalations`~~, ~~`shortcuts`~~'
