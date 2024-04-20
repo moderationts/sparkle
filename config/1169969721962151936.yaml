@@ -57,7 +57,7 @@ tags:
       color: 0x1e1f22
       fields: 
         - name: "How do I apply for staff?"
-          value: "To become a staff member, you must apply through our staff application. This form is available in <#1169978382008721518> when we require more staff, and you'll usually require around Level 10+ and 2 or less warnings to apply (but this may change)."
+          value: "To become a staff member, you must apply through our staff application. This form is available in <#1229769876101664840> when we require more staff, and you'll usually require around Level 10+ and 2 or less warnings to apply (but this may change)."
           inline: false
   - name: 'slowmode'
     aliases: ['slow', 'sm']
