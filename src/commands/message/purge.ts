@@ -1,6 +1,7 @@
 import { PermissionFlagsBits, Message } from 'discord.js';
 import Command, { properties } from '../../lib/structs/Command';
 import { getUser } from '../../lib/util/functions';
+import { mainColor } from '../../lib/util/constants';
 
 @properties<'message'>({
   name: 'purge',
@@ -75,21 +76,31 @@ class PurgeCommand extends Command {
         deletedTotal += deletedCount;
       }
 
-      return message.channel.send(`Deleted \`${deletedTotal}\` messages from ${user.toString()}.`).then(msg => {
-        setTimeout(() => {
-          msg.delete().catch(() => {});
-        }, 5000);
-      });
+      return message.channel
+        .send({
+          embeds: [{ description: `Deleted \`${deletedTotal}\` messages from ${user.toString()}.`, color: mainColor }]
+        })
+        .then(msg => {
+          setTimeout(() => {
+            msg.delete().catch(() => {});
+          }, 5000);
+        });
     }
 
     const messages = await message.channel.messages.fetch({ limit: count, before });
     const deletedTotal = (await message.channel.bulkDelete(messages, true)).size;
 
-    return message.channel.send(`Deleted \`${deletedTotal}\` messages.`).then(msg => {
-      setTimeout(() => {
-        msg.delete().catch(() => {});
-      }, 5000);
-    });
+    return message.channel
+      .send({
+        embeds: [
+          { description: `Deleted \`${deletedTotal}\` messages from ${message.channel.toString()}.`, color: mainColor }
+        ]
+      })
+      .then(msg => {
+        setTimeout(() => {
+          msg.delete().catch(() => {});
+        }, 5000);
+      });
   }
 }
 
