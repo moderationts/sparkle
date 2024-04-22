@@ -67,9 +67,11 @@ class ReportModal extends Modal {
             })
             .setColor(Colors.Yellow)
             .setDescription(
-              `**Report ID:** \`${report.id}\`\n**Report Type:** User\n\n**Reported User:** ${user!.toString()} (\`${
+              `**Report ID:** \`${
+                report.id
+              }\`\n**Report Type:** User\n**Report reason:** ${reason}\n\n**Reported User:** ${user!.toString()} (\`${
                 user?.id
-              }\`)\n**Report Reason:** \`\`\`${reason}\`\`\``
+              }\`)`
             )
             .setFooter({ text: 'Report Received' })
             .setTimestamp(Date.now());
@@ -151,15 +153,17 @@ class ReportModal extends Modal {
             })
             .setColor(Colors.Yellow)
             .setDescription(
-              `**Report ID:** \`${report.id}\`\n**Report Type:** Message\n\n**Reported Message ID:** \`${
+              `**Report ID:** \`${
+                report.id
+              }\`\n**Report Type:** Message\n**Report Reason:** ${reason}\n\n**Message ID:** \`${
                 message.id
-              }\`\n**Reported Message URL:** [Click Me!](${hideLinkEmbed(
-                message.url
-              )})\n**Channel ID:** ${message.channel.toString()} (\`${
+              }\`\n**Channel ID:** ${message.channel.toString()} (\`${
                 message.channel.id
-              }\`)\n**Message Preview:** \`\`\`${message.content.slice(0, 100)}${
+              }\`)\n**Message URL:** [Click Me](${hideLinkEmbed(
+                message.url
+              )})\n**Preview:** \`\`\`${message.content.slice(0, 100)}${
                 message.content.length > 100 ? '...' : ''
-              }\`\`\`\n**Report Reason:** \`\`\`${reason}\`\`\``
+              }\`\`\``
             )
             .setFooter({ text: 'Report Received' })
             .setTimestamp(Date.now());
