@@ -10,7 +10,7 @@ commands:
       roles: ['1229769858594377771', '1229769856602345565', '1230864876591779941', '1229769854278434888']
 
 punishments:
-  editors: '1230864906497298453'
+  editors: ['1230864906497298453'. '1229769858594377771', '1229769856602345565', '1230864876591779941', '1229769854278434888']
   managers: ['1229769858594377771', '1229769856602345565', '1230864876591779941', '1229769854278434888']
 
   defaultWarnDuration: 2592000000 # 1 month
@@ -23,7 +23,7 @@ punishments:
     ban: 'If you feel like this punishment is unjustified, you may appeal it by messaging a Support Agent.'
 
 lock:
-  channels: ['1229769880488771645', '1229769872754606130', '1229769883156353076', '1229769885492711506', '1229769887056920597', '1229769888290045992', '1229769877259292812', '1229769879494725663']
+  channels: ['1229769880488771645', '1229769872754606130', '1229769885492711506', '1229769887056920597', '1229769883156353076', '1229769888290045992', '1229769877259292812', '1229769879494725663']
   overrides: 377960303168 # Will deny Send Messages, Send Messages In Threads, Create Public/Private Threads, Attach Files, Add Reactions, Connect (vc), Speak (vc), Video (vc)
 
 tags:
@@ -40,8 +40,8 @@ tags:
     embed:
       color: 0x1e1f22
       fields: 
-        - name: "Act mature when interacting in our community."
-          value: "Use the community productively and do not engage in debates or arguments. Report it to our team instead."
+        - name: "🔔 Act mature when interacting in our community."
+          value: "Spamming, begging and being annoying is prohibited."
           inline: false
   - name: '3'
     aliases: ['sfw', 'nsfw']
@@ -57,15 +57,15 @@ tags:
       color: 0x1e1f22
       fields: 
         - name: "How do I apply for staff?"
-          value: "To become a staff member, you must apply through our staff application. This form is available in <#1229769876101664840> when we require more staff, and you'll usually require around Level 10+ and 2 or less warnings to apply (but this may change)."
+          value: "To become a staff member, you must apply through our staff application. This form is available in <#1229769876101664840> when we require more staff, and you'll usually require around Level 25+ and 3 or less warnings to apply (but this may change)."
           inline: false
-  - name: 'slowmode'
-    aliases: ['slow', 'sm']
+  - name: 'ranks'
+    aliases: ['trusted', 'res']
     embed:
       color: 0x1e1f22
       fields: 
-        - name: "Why is slowmode so high?"
-          value: "In order to effectively moderate chat, slowmode needs to be high so that moderators can view and punish users that break the rules. You can level up to gain access to chats with no slowmode!"
+        - name: "How do I get the Trusted/Resident rank in-game?"
+          value: "To learn more about the `[T]` rank, what it is and how to get it, check out the <#1233676674550337577? channel. If you want to get the `[Res]` rank, you will need to donate at least $5 USD via PayPal. More information can be found here: https://discord.com/channels/1169969721962151936/1233676044070944810/1233694955734831156"
           inline: false
 
 reports:
