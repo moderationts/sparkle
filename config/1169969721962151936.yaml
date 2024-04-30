@@ -88,7 +88,7 @@ automod:
       immuneRoles: ['1229769858594377771', '1229769856602345565', '1230864876591779941']
       immuneChannels: []
       punishment: 'Warn'
-      duration: 86400000
+      duration: 1814400000
       customInfo: 'We are a SFW server, please do not use swear words.'
       fallbackResponse: 'Please do not send prohibited words!'
       content: ['word1', 'word2', 'word3']
@@ -108,7 +108,7 @@ automod:
       immuneRoles: ['1230867655301402644', '1229769858594377771', '1229769856602345565', '1230864876591779941']
       immuneChannels: []
       punishment: 'Warn'
-      duration: 86400000
+      duration: 1814400000
       customInfo: 'You are not allowed to send any links as they may contain malicious content.'
       fallbackResponse: 'Hi! Please do not send links, thanks!'
       whitelist: ['discord.com', 'discordapp.com', 'tenor.com'] # We whitelist the domain in the global filter but not in the tenor filter that gets triggered for users without any of the immune roles.
@@ -118,7 +118,7 @@ automod:
       immuneRoles: ['1229769858594377771', '1229769856602345565', '1230864876591779941', '1230867655301402644', '1229769859835891743', '1229769861207560192', '1180061563382677536']
       immuneChannels: []
       punishment: 'Warn'
-      duration: 86400000
+      duration: 1814400000
       fallbackResponse: 'Hi! You cannot send tenor links yet as you are lacking an immune role to the tenor links filter!'
       whitelist: []
 
@@ -128,7 +128,7 @@ automod:
       immuneRoles: ['1230867349029130371', '1230865029486870588', '1230864906497298453', '1229769858594377771', '1230865761040601108', '1229769856602345565', '1230864876591779941', '1229769854278434888']
       immuneChannels: []
       punishment: 'Warn'
-      duration: 86400000
+      duration: 1814400000
       fallbackResponse: 'Hi! You cannot ping the owners as they are busy and will not respond to your message.'
       list: ['851803979914805328']
 
@@ -137,7 +137,7 @@ automod:
       immuneRoles: []
       immuneChannels: []
       punishment: 'Warn'
-      duration: 86400000
+      duration: 1814400000
       fallbackResponse: 'Hi! You cannot ping the developers as they are busy and will not respond to your message.'
       list: ['1005206283596611614']
 
@@ -147,7 +147,7 @@ automod:
       immuneRoles: ['1230867349029130371', '1230865029486870588', '1230864906497298453', '1229769858594377771', '1230865761040601108', '1229769856602345565', '1230864876591779941', '1229769854278434888']
       immuneChannels: []
       punishment: 'Warn'
-      duration: 86400000
+      duration: 1814400000
       limit: 5
 
     maxCharacters:
@@ -155,7 +155,7 @@ automod:
       immuneRoles: ['1230867349029130371', '1230865029486870588', '1230864906497298453', '1229769858594377771', '1230865761040601108', '1229769856602345565', '1230864876591779941', '1229769854278434888']     
       immuneChannels: []
       punishment: 'Warn'
-      duration: 86400000
+      duration: 1814400000
       limit: 400
 
     maxAttachments:
@@ -163,7 +163,7 @@ automod:
       immuneRoles: ['1230867349029130371', '1230865029486870588', '1230864906497298453', '1229769858594377771', '1230865761040601108', '1229769856602345565', '1230864876591779941', '1229769854278434888']
       immuneChannels: ['1229769888290045992', '1229769880488771645']
       punishment: 'Warn'
-      duration: 86400000
+      duration: 1814400000
       limit: 8
 
 logging:
