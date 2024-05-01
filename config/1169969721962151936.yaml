@@ -65,7 +65,7 @@ tags:
       color: 0x1e1f22
       fields: 
         - name: "How do I get the Trusted/Resident rank in-game?"
-          value: "To learn more about the `[T]` rank, what it is and how to get it, check out the <#1233676674550337577? channel. If you want to get the `[Res]` rank, you will need to donate at least $5 USD via PayPal. More information can be found here: https://discord.com/channels/1169969721962151936/1233676044070944810/1233694955734831156"
+          value: "To learn more about the `[T]` rank, what it is and how to get it, check out the <#1233676674550337577> channel. If you want to get the `[Res]` rank, you will need to donate at least $5 USD via PayPal. More information can be found here: https://discord.com/channels/1169969721962151936/1233676044070944810/1233694955734831156"
           inline: false
 
 reports:
