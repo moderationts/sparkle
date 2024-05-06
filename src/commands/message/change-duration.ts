@@ -93,7 +93,7 @@ class DurationCommand extends Command {
 
     collector.on('collect', async response => {
       if (response.content.toLowerCase() === 'yes') {
-        if (punishment.type === PunishmentType.Mute) await member?.timeout(duration, reason);
+        if (punishment.type === PunishmentType.Mute) await member!.timeout(duration, reason);
 
         await this.client.db.punishment.update({
           where: { id },
