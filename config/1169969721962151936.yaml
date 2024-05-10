@@ -17,10 +17,10 @@ punishments:
   defaultMuteDuration: 21600000 # 6 hours
 
   additionalInfo:
-    warn: 'If you feel like this punishment is unjustified, you may appeal it by messaging a Support Agent.'
-    mute: 'If you feel like this punishment is unjustified, you may appeal it by messaging a Support Agent.'
-    kick: 'If you feel like this punishment is unjustified, you may appeal it by messaging a Support Agent.'
-    ban: 'If you feel like this punishment is unjustified, you may appeal it by messaging a Support Agent.'
+    warn: 'If you feel like this punishment is unjustified, you may appeal it by messaging a Mod**+** or above.'
+    mute: 'If you feel like this punishment is unjustified, you may appeal it by messaging a Mod**+** or above.'
+    kick: 'If you feel like this punishment is unjustified, you may appeal it by messaging a Mod**+** or above.'
+    ban: 'If you feel like this punishment is unjustified, you may appeal it by messaging a Mod**+** or above.'
 
 lock:
   channels: ['1229769880488771645', '1229769872754606130', '1229769885492711506', '1229769887056920597', '1229769883156353076', '1229769888290045992', '1229769877259292812', '1229769879494725663']
