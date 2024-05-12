@@ -17,10 +17,10 @@ punishments:
   defaultMuteDuration: 21600000 # 6 hours
 
   additionalInfo:
-    warn: 'If you feel like this punishment is unjustified, you may appeal it by messaging a Mod**+** or above.'
-    mute: 'If you feel like this punishment is unjustified, you may appeal it by messaging a Mod**+** or above.'
-    kick: 'If you feel like this punishment is unjustified, you may appeal it by messaging a Mod**+** or above.'
-    ban: 'If you feel like this punishment is unjustified, you may appeal it by messaging a Mod**+** or above.'
+    warn: 'If you feel like this punishment is unjustified, you may appeal it by messaging a Super Mod or above.'
+    mute: 'If you feel like this punishment is unjustified, you may appeal it by messaging a Super Mod or above.'
+    kick: 'If you feel like this punishment is unjustified, you may appeal it by messaging a Super Mod or above.'
+    ban: 'If you feel like this punishment is unjustified, you may appeal it by messaging a Super Mod or above.'
 
 lock:
   channels: ['1229769880488771645', '1229769872754606130', '1229769885492711506', '1229769887056920597', '1229769883156353076', '1229769888290045992', '1229769877259292812', '1229769879494725663']
@@ -105,7 +105,7 @@ automod:
   links:
     - name: 'All Links Filter'
       enabled: true
-      immuneRoles: ['1230867655301402644', '1229769858594377771', '1229769856602345565', '1230864876591779941']
+      immuneRoles: ['1239109759886688326', '1229769861207560192', '1229769859835891743']
       immuneChannels: []
       punishment: 'Warn'
       duration: 1814400000
@@ -115,7 +115,7 @@ automod:
 
     - name: 'Tenor Links Filter'
       enabled: true
-      immuneRoles: ['1229769858594377771', '1229769856602345565', '1230864876591779941', '1230867655301402644', '1229769859835891743', '1229769861207560192', '1180061563382677536']
+      immuneRoles: ['1229769859835891743', '1180061563382677536', '1229769861207560192', '1239109759886688326']
       immuneChannels: []
       punishment: 'Warn'
       duration: 1814400000
@@ -125,7 +125,7 @@ automod:
   mentions:
     - name: 'Owner Mention Filter'
       enabled: true
-      immuneRoles: ['1230867349029130371', '1230865029486870588', '1230864906497298453', '1229769858594377771', '1230865761040601108', '1229769856602345565', '1230864876591779941', '1229769854278434888']
+      immuneRoles: ['1239109759886688326']
       immuneChannels: []
       punishment: 'Warn'
       duration: 1814400000
@@ -144,7 +144,7 @@ automod:
   antiSpam:
     maxMentions:
       enabled: true
-      immuneRoles: ['1230867349029130371', '1230865029486870588', '1230864906497298453', '1229769858594377771', '1230865761040601108', '1229769856602345565', '1230864876591779941', '1229769854278434888']
+      immuneRoles: ['1239109759886688326']
       immuneChannels: []
       punishment: 'Warn'
       duration: 1814400000
@@ -152,7 +152,7 @@ automod:
 
     maxCharacters:
       enabled: true
-      immuneRoles: ['1230867349029130371', '1230865029486870588', '1230864906497298453', '1229769858594377771', '1230865761040601108', '1229769856602345565', '1230864876591779941', '1229769854278434888']     
+      immuneRoles: ['1239109759886688326']     
       immuneChannels: []
       punishment: 'Warn'
       duration: 1814400000
@@ -160,8 +160,8 @@ automod:
 
     maxAttachments:
       enabled: true
-      immuneRoles: ['1230867349029130371', '1230865029486870588', '1230864906497298453', '1229769858594377771', '1230865761040601108', '1229769856602345565', '1230864876591779941', '1229769854278434888']
-      immuneChannels: ['1229769888290045992', '1229769880488771645']
+      immuneRoles: ['1239109759886688326']
+      immuneChannels: []
       punishment: 'Warn'
       duration: 1814400000
       limit: 8
