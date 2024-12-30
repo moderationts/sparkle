@@ -4,26 +4,26 @@ commands:
   channels: ['1229769887056920597']
   overrides:
     - name: 'ban'
-      roles: ['1230864906497298453', '1229769858594377771', '1229769856602345565', '1230864876591779941', '1229769854278434888']
+      roles: ['1294920539093205064', '1304051473113677825', '1297079312016605225', '1305861251674542232', '1294920757633355887', '1294920926088921153', '1294920974591852554']
 
     - name: 'remove-punishment'
-      roles: ['1229769858594377771', '1229769856602345565', '1230864876591779941', '1229769854278434888']
+      roles: ['1294920539093205064', '1304051473113677825', '1297079312016605225', '1305861251674542232', '1294920757633355887']
 
 punishments:
-  editors: ['1230864906497298453', '1229769858594377771', '1229769856602345565', '1230864876591779941', '1229769854278434888']
-  managers: ['1229769858594377771', '1229769856602345565', '1230864876591779941', '1229769854278434888']
+  editors: ['1294920539093205064', '1304051473113677825', '1297079312016605225', '1305861251674542232', '1294920757633355887', '1294920926088921153',]
+  managers: ['1294920539093205064', '1304051473113677825', '1297079312016605225', '1305861251674542232', '1294920757633355887']
 
   defaultWarnDuration: 2592000000 # 1 month
   defaultMuteDuration: 21600000 # 6 hours
 
   additionalInfo:
-    warn: 'If you feel like this punishment is unjustified, you may appeal it by messaging a Super Mod or above.'
-    mute: 'If you feel like this punishment is unjustified, you may appeal it by messaging a Super Mod or above.'
-    kick: 'If you feel like this punishment is unjustified, you may appeal it by messaging a Super Mod or above.'
-    ban: 'If you feel like this punishment is unjustified, you may appeal it by messaging a Super Mod or above.'
+    warn: 'If you feel like this punishment is unjustified, you may appeal it by creating a ticket or messaging a Lead Mod or above.'
+    mute: 'If you feel like this punishment is unjustified, you may appeal it by filling out this form: https://forms.gle/Z5JLWes9DJmz9WdH8'
+    kick: 'If you feel like this punishment is unjustified, you may appeal it by creating a ticket or messaging a Lead Mod or above.'
+    ban: 'If you feel like this punishment is unjustified, you may appeal it by filling out this form: https://forms.gle/Z5JLWes9DJmz9WdH8'
 
 lock:
-  channels: ['1229769880488771645', '1229769872754606130', '1229769885492711506', '1229769887056920597', '1229769883156353076', '1229769888290045992', '1229769877259292812', '1229769879494725663']
+  channels: ['1294918129238937620', '1294918145122893854', '1294918183148453948', '1294918194833915975', '1294920390174310440', '1294918609289609216', '1294918650020630579', '1294920437427474494', '1294920459552292864']
   overrides: 377960303168 # Will deny Send Messages, Send Messages In Threads, Create Public/Private Threads, Attach Files, Add Reactions, Connect (vc), Speak (vc), Video (vc)
 
 tags:
@@ -32,24 +32,24 @@ tags:
     embed:
       color: 0x1e1f22
       fields: 
-        - name: "💞  Respect everyone at all times."
-          value: "Hate speech, toxicity and/or harassment is strictly prohibited."
+        - name: "💞 Be respectful."
+          value: "Hate speech, toxicity and/or harassment is strictly prohibited. Treat others they way you would like to be treated."
           inline: false
   - name: '2'
     aliases: ['mature', 'maturity']
     embed:
       color: 0x1e1f22
       fields: 
-        - name: "🔔 Act mature when interacting in our community."
-          value: "Spamming, begging and being annoying is prohibited."
+        - name: "🌴 Act mature."
+          value: "We want to create a community that is mature and productive with how they use the server. While you can have fun, please remember the nature and purpose of the server."
           inline: false
   - name: '3'
     aliases: ['sfw', 'nsfw']
     embed:
       color: 0x1e1f22
       fields: 
-        - name: "🔞  No inappropriate contributions."
-          value: "This is not the place for NSFW images, messages or profiles. The same goes for overly sexual/suggestive conversations as well as sending unrelated links as we cannot keep our community safe outside of our community."
+        - name: "💭 Keep the chat safe & appropriate.."
+          value: "Use your common sense and don't find loopholes. Spam, drama, fighting, advertising and NSFW is strictly prohibited. "
           inline: false
   - name: 'mod'
     aliases: ['apply', 'staff']
@@ -60,32 +60,32 @@ tags:
           value: "To become a staff member, you must apply through our staff application. This form is available in <#1233676044070944810> when we require more staff, and you'll usually require around Level 25+ and 3 or less warnings to apply (but this may change)."
           inline: false
   - name: 'ranks'
-    aliases: ['trusted', 'res']
+    aliases: ['English', 'language']
     embed:
       color: 0x1e1f22
       fields: 
-        - name: "How do I get the Trusted/Resident rank in-game?"
-          value: "To learn more about the `[T]` rank, what it is and how to get it, check out the <#1233676674550337577> channel. If you want to get the `[Res]` rank, you will need to donate at least $5 USD via PayPal. More information can be found here: https://discord.com/channels/1169969721962151936/1233676044070944810/1233694955734831156"
+        - name: "🔤 Keep it English."
+          value: "Our team is only capable of moderating messages in the English language. Please keep all conversations in English."
           inline: false
 
 reports:
   user: # User Reports
     enabled: true # A boolean (true/false)
-    channelId: '1229769898327281684' # The channel in which message reports will be logged
-    excluded: ['1229769856602345565', '1230864876591779941'] # An array of role ids immune to message reports
-    blacklist: ['1229769864194031640'] # An array of role ids blacklisted from creating message report
+    channelId: '1294919791039086602' # The channel in which message reports will be logged
+    excluded: ['1294921829303189514'] # An array of role ids immune to message reports
+    blacklist: [] # An array of role ids blacklisted from creating message report
 
   message: # Message Reports
     enabled: true # A boolean (true/false)
-    channelId: '1229769898327281684' # The channel in which message reports will be logged
-    excluded: ['1229769856602345565', '1230864876591779941'] # An array of role ids immune to message reports
-    blacklist: ['1229769864194031640'] # An array of role ids blacklisted from creating message report
+    channelId: '1294919791039086602' # The channel in which message reports will be logged
+    excluded: ['1294921829303189514'] # An array of role ids immune to message reports
+    blacklist: [] # An array of role ids blacklisted from creating message report
           
 automod:
   filters:
     - name: 'No Swear Filter'
       enabled: false
-      immuneRoles: ['1229769858594377771', '1229769856602345565', '1230864876591779941']
+      immuneRoles: ['1294921829303189514']
       immuneChannels: []
       punishment: 'Warn'
       duration: 1814400000
@@ -95,7 +95,7 @@ automod:
 
     - name: 'No Slur Filter'
       enabled: false
-      immuneRoles: ['1229769858594377771', '1229769856602345565', '1230864876591779941']
+      immuneRoles: ['1294921829303189514']
       immuneChannels: []
       punishment: 'Ban'
       customInfo: 'We are a welcoming and inclusive community, as such we will not tolerate any slurs.'
@@ -105,7 +105,7 @@ automod:
   links:
     - name: 'All Links Filter'
       enabled: true
-      immuneRoles: ['1239109759886688326', '1229769861207560192', '1229769859835891743']
+      immuneRoles: ['1294921829303189514']
       immuneChannels: []
       punishment: 'Warn'
       duration: 1814400000
@@ -115,7 +115,7 @@ automod:
 
     - name: 'Tenor Links Filter'
       enabled: true
-      immuneRoles: ['1229769859835891743', '1180061563382677536', '1229769861207560192', '1239109759886688326']
+      immuneRoles: ['1294921829303189514', '1319177836933677098', '1297079860312801312',]
       immuneChannels: []
       punishment: 'Warn'
       duration: 1814400000
@@ -125,16 +125,16 @@ automod:
   mentions:
     - name: 'Owner Mention Filter'
       enabled: true
-      immuneRoles: ['1239109759886688326']
+      immuneRoles: ['1294921829303189514']
       immuneChannels: []
       punishment: 'Warn'
       duration: 1814400000
       fallbackResponse: 'Hi! You cannot ping the owners as they are busy and will not respond to your message.'
-      list: ['851803979914805328']
+      list: ['1291990791752912977']
 
     - name: 'Developer Mention Filter'
       enabled: false
-      immuneRoles: []
+      immuneRoles: ['1294921829303189514']
       immuneChannels: []
       punishment: 'Warn'
       duration: 1814400000
@@ -144,7 +144,7 @@ automod:
   antiSpam:
     maxMentions:
       enabled: true
-      immuneRoles: ['1239109759886688326']
+      immuneRoles: ['1294921829303189514']
       immuneChannels: []
       punishment: 'Warn'
       duration: 1814400000
@@ -152,7 +152,7 @@ automod:
 
     maxCharacters:
       enabled: true
-      immuneRoles: ['1239109759886688326']     
+      immuneRoles: ['1294921829303189514']     
       immuneChannels: []
       punishment: 'Warn'
       duration: 1814400000
@@ -160,7 +160,7 @@ automod:
 
     maxAttachments:
       enabled: true
-      immuneRoles: ['1239109759886688326']
+      immuneRoles: ['1294921829303189514']
       immuneChannels: []
       punishment: 'Warn'
       duration: 1814400000
@@ -169,18 +169,18 @@ automod:
 logging:
   punishments:
     enabled: true
-    channelId: '1229769901925994547'
+    channelId: '1294919805060517918'
   punishmentEdit:
     enabled: true
-    channelId: '1229769901925994547'
+    channelId: '1294919805060517918'
   messages:
     enabled: true
-    channelId: '1229769903217577985'
+    channelId: '1294919819468079176'
     excluded: ['']
   commands:
     enabled: false
-    channelId: '1170309999352872970'
+    channelId: '1294919985264590888'
   mediaConversion:
     enabled: false
-    channelIds: '1219614615172808755'
-    logChannelId: '1183711455007219732' 
+    channelIds: '1294919819468079176'
+    logChannelId: '1294919819468079176' 
